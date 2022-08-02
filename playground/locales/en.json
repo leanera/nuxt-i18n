@@ -1,0 +1,12 @@
+{
+  "title": "@leanera/nuxt-i18n",
+  "hello": "Hello, {name}!",
+  "language": "Language",
+  "menu": {
+    "home": "Home",
+    "about": "About"
+  },
+  "about": {
+    "description": "This is the about page"
+  }
+}
