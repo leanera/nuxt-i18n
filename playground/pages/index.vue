@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { useI18n } from '@leanera/vue-i18n'
-const { t } = useI18n()
+const { locale, t } = useI18n()
 const name = ref('visitor')
+
+watchEffect(() => {
+  name.value = locale.value === 'en' ? 'Visitor' : 'Besucher'
+})
 </script>
 
 <template>

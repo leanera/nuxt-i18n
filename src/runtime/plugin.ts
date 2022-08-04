@@ -5,15 +5,13 @@ import {
   messages,
 } from '#build/i18n.options.mjs'
 
-export default defineNuxtPlugin(async (nuxtApp) => {
-  const { vueApp: app } = nuxtApp
-
+export default defineNuxtPlugin((nuxtApp) => {
   const i18n = createI18n({
     defaultLocale,
     messages,
   })
 
-  app.use(i18n)
+  nuxtApp.vueApp.use(i18n)
 
   return {
     provide: {

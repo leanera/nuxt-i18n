@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@leanera/nuxt-i18n?color=a1b858&label=)](https://www.npmjs.com/package/@leanera/nuxt-i18n)
 
-> Lightweight internationalization module for [Nuxt 3](https://v3.nuxtjs.org).
+> [Nuxt 3](https://v3.nuxtjs.org) module for @leanera/vue-i18n with SSR support.
 
 ## Setup
 
@@ -22,6 +22,12 @@ Add `@leanera/nuxt-i18n` to your `nuxt.confg.ts`:
 export default defineNuxtConfig({
   modules: ['@leanera/nuxt-i18n'],
 })
+```
+
+In your components, use the `useI18n` composable:
+
+```ts
+const { locales, locale, messages, t } = useI18n()
 ```
 
 ### Locale Messages
@@ -54,7 +60,7 @@ The following is a set of files of locale resources defined in the directory:
 ------| de.json/
 ```
 
-The locale messages defined above will be loaded by the `@leanera/nuxt-i18n` module and set to the `messages` option when initializing `@leanera/vue-i18n` with `createI18n()`.
+The locale messages defined above will be injected into the `messages` option when initializing `@leanera/vue-i18n` with `createI18n()`.
 
 ## Configuration
 

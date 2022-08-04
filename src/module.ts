@@ -4,17 +4,15 @@ import {
   createResolver,
   defineNuxtModule,
 } from '@nuxt/kit'
-import type { I18nInstance } from '@leanera/vue-i18n'
-import type { NuxtI18nOptions } from './types'
 import { generateLoaderOptions } from './gen'
 
-declare module '@nuxt/kit' {
-  interface NuxtApp {
-    $i18n: I18nInstance
-  }
+export interface ModuleOptions {
+  defaultLocale: string
+  locales: string[]
+  messages: Record<string, any>
 }
 
-export default defineNuxtModule<NuxtI18nOptions>({
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: '@leanera/nuxt-i18n',
     configKey: 'i18n',
@@ -34,8 +32,13 @@ export default defineNuxtModule<NuxtI18nOptions>({
     // Transpile runtime
     nuxt.options.build.transpile.push(resolve('runtime'))
 
-    // Add Nuxt plugin
+    // Add i18n plugin
     addPluginTemplate(resolve('runtime/plugin'))
+
+    // Add i18n composables
+    nuxt.hook('autoImports:dirs', (dirs) => {
+      dirs.push(resolve('runtime/composables'))
+    })
 
     // Load options template
     addTemplate({
