@@ -1,7 +1,7 @@
 {
   "name": "@leanera/nuxt-i18n",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "packageManager": "pnpm@7.8.0",
   "description": "Lightweight internationalization module for Nuxt 3",
   "author": "LeanERA GmbH <https://github.com/leanera>",
