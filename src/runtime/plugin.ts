@@ -1,5 +1,5 @@
 import { createI18n } from '@leanera/vue-i18n'
-import { defineNuxtPlugin } from '#app'
+import { defineNuxtPlugin } from '#imports'
 import {
   defaultLocale,
   messages,

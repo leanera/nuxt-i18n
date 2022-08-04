@@ -4,7 +4,7 @@ import {
   createResolver,
   defineNuxtModule,
 } from '@nuxt/kit'
-import { generateLoaderOptions } from './gen'
+import { toCode } from './utils'
 
 export interface ModuleOptions {
   defaultLocale: string
@@ -43,7 +43,11 @@ export default defineNuxtModule<ModuleOptions>({
     // Load options template
     addTemplate({
       filename: 'i18n.options.mjs',
-      getContents: () => generateLoaderOptions(moduleOptions),
+      getContents() {
+        return Object.entries(moduleOptions)
+          .map(([rootKey, rootValue]) => `export const ${rootKey} = ${toCode(rootValue)}`)
+          .join('\n')
+      },
     })
 
     addTemplate({
