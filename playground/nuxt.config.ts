@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   modules: [nuxtI18n],
 
   i18n: {
-    locale: 'en',
+    defaultLocale: 'en',
     locales: ['en', 'de'],
     messages: {
       en: {
@@ -19,5 +19,9 @@ export default defineNuxtConfig({
         title: '@leanera/nuxt-i18n (überschrieben von nuxt.config.ts)',
       },
     },
+  },
+
+  typescript: {
+    shim: false,
   },
 })
