@@ -17,7 +17,7 @@ export default defineNuxtModule<ModuleOptions>({
     name: '@leanera/nuxt-i18n',
     configKey: 'i18n',
     compatibility: {
-      nuxt: '^3.0.0',
+      nuxt: '^3',
       bridge: false,
     },
   },
