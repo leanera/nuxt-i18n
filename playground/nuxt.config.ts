@@ -1,10 +1,9 @@
 import { defineNuxtConfig } from 'nuxt'
-import nuxtI18n from '../src/module'
 import de from './locales/de.json'
 import en from './locales/en.json'
 
 export default defineNuxtConfig({
-  modules: [nuxtI18n],
+  modules: ['../src/module'],
 
   i18n: {
     defaultLocale: 'en',
@@ -22,6 +21,8 @@ export default defineNuxtConfig({
   },
 
   typescript: {
+    strict: true,
+    typeCheck: true,
     shim: false,
   },
 })
