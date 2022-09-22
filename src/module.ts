@@ -36,7 +36,7 @@ export default defineNuxtModule<ModuleOptions>({
     addPluginTemplate(resolve('runtime/plugin'))
 
     // Add i18n composables
-    nuxt.hook('autoImports:dirs', (dirs) => {
+    nuxt.hook('imports:dirs', (dirs) => {
       dirs.push(resolve('runtime/composables'))
     })
 
