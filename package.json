@@ -50,7 +50,7 @@
     "@leanera/nuxt-i18n": "workspace:*",
     "@nuxt/module-builder": "^0.1.7",
     "bumpp": "^8.2.1",
-    "eslint": "^8.23.1",
+    "eslint": "^8.24.0",
     "nuxt": "^3.0.0-rc.11",
     "typescript": "^4.8.3",
     "vue-tsc": "^0.40.13"

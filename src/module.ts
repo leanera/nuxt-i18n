@@ -1,9 +1,4 @@
-import {
-  addPluginTemplate,
-  addTemplate,
-  createResolver,
-  defineNuxtModule,
-} from '@nuxt/kit'
+import { addImportsDir, addPluginTemplate, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { toCode } from './utils'
 
 export interface ModuleOptions {
@@ -36,9 +31,7 @@ export default defineNuxtModule<ModuleOptions>({
     addPluginTemplate(resolve('runtime/plugin'))
 
     // Add i18n composables
-    nuxt.hook('imports:dirs', (dirs) => {
-      dirs.push(resolve('runtime/composables'))
-    })
+    addImportsDir(resolve('runtime/composables'))
 
     // Load options template
     addTemplate({

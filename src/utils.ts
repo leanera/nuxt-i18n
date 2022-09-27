@@ -1,13 +1,7 @@
-export const isFunction = <T extends Function>(val: any): val is T =>
-  typeof val === 'function'
-
+export const isFunction = <T extends Function>(val: any): val is T => typeof val === 'function'
 export const isString = (val: unknown): val is string => typeof val === 'string'
-
-export const isRegExp = (val: unknown): val is RegExp =>
-  Object.prototype.toString.call(val) === '[object RegExp]'
-
-export const isObject = (val: any): val is object =>
-  Object.prototype.toString.call(val) === '[object Object]'
+export const isRegExp = (val: unknown): val is RegExp => Object.prototype.toString.call(val) === '[object RegExp]'
+export const isObject = (val: any): val is object => Object.prototype.toString.call(val) === '[object Object]'
 
 export function stringifyObj(obj: Record<string, any>): string {
   return `Object({${Object.entries(obj)
