@@ -45,7 +45,6 @@ export default defineNuxtModule<ModuleOptions>({
 
     addTemplate({
       filename: 'i18n.options.d.ts',
-      write: true,
       getContents() {
         return `
 export declare const defaultLocale: string
