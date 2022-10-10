@@ -27,7 +27,7 @@ watch(localeSelect, async (newLocale, oldLocale) => {
         <label for="locale-select">{{ t('language') }}</label>
         <select id="locale-select" v-model="localeSelect">
           <option v-for="i in locales" :key="i" :value="i">
-            {{ locale }}
+            {{ i }}
           </option>
         </select>
       </form>
