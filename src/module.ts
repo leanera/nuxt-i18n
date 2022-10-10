@@ -150,7 +150,6 @@ export default defineNuxtModule<ModuleOptions>({
     // Load options template
     addTemplate({
       filename: 'i18n.options.mjs',
-      write: true,
       getContents() {
         return `
 ${[...syncLocaleFiles]
