@@ -2,5 +2,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "i18n-ally.localesPaths": [
+    "playground/locales"
+  ],
   "prettier.enable": false
 }
