@@ -161,12 +161,12 @@ export const options = {${Object.entries(options)
   .map(([key, value]) => `${key}: ${toCode(value)}`)
   .join(',')}};
 export const localeMessages = {
-  ${[...syncLocaleFiles]
-    .map(({ code }) => `  ${toCode(code)}: () => Promise.resolve(${genSafeVariableName(`locale_${code}`)}),`)
-    .join(',')}
-  ${[...asyncLocaleFiles]
-    .map(({ code, path }) => `  ${toCode(code)}: ${genDynamicImport(path)},`)
-    .join(',')}
+${[...syncLocaleFiles]
+  .map(({ code }) => `  ${toCode(code)}: () => Promise.resolve(${genSafeVariableName(`locale_${code}`)}),`)
+  .join('\n')}
+${[...asyncLocaleFiles]
+  .map(({ code, path }) => `  ${toCode(code)}: ${genDynamicImport(path)},`)
+  .join('\n')}
 };
 `.trimStart()
       },
