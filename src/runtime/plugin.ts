@@ -65,6 +65,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   const i18n = createI18n({
     defaultLocale,
+    locales,
     messages,
   })
 

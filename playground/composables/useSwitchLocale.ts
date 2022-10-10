@@ -2,7 +2,7 @@ import type { UseI18n } from '@leanera/vue-i18n'
 import { useNuxtApp } from '#imports'
 import { localeMessages } from '#build/i18n.options'
 
-export async function useSwitchLocale(newLocale: string) {
+export async function useLazySwitchLocale(newLocale: string) {
   const { messages, setLocale } = useNuxtApp().$i18n as UseI18n
   const loader = localeMessages[newLocale]
 
