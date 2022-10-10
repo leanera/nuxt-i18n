@@ -1,5 +1,7 @@
-import type { LocaleObject } from 'vue-i18n-routing'
+export type CustomRoutePages = Record<string, Record<string, string>>
 
-export type LocaleInfo = {
+export interface LocaleInfo {
+  code: string
   path: string
-} & LocaleObject
+  file: string
+}

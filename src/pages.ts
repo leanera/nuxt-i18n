@@ -17,7 +17,7 @@ export function setupPages(
     const localizedPages = localizeRoutes(pages, {
       ...options,
       includeUprefixedFallback,
-      optionsResolver: getRouteOptionsResolver(),
+      optionsResolver: getRouteOptionsResolver(options),
     })
     pages.splice(0, pages.length)
     pages.unshift(...(localizedPages as NuxtPage[]))
@@ -33,7 +33,7 @@ export function setupPages(
   })
 }
 
-function getRouteOptionsResolver(): RouteOptionsResolver {
+function getRouteOptionsResolver(moduleOptions: Required<ModuleOptions>): RouteOptionsResolver {
   return function (route, localeCodes): ComputedRouteOptions | null {
     const options: ComputedRouteOptions = {
       locales: localeCodes,
@@ -41,13 +41,13 @@ function getRouteOptionsResolver(): RouteOptionsResolver {
     }
 
     // Set custom localized route paths
-    // if (moduleOptions.pages) {
-    //   for (const locale of options.locales) {
-    //     const customPath = moduleOptions.pages?.[route.path]?.[locale]
-    //     if (customPath)
-    //       options.paths[locale] = customPath
-    //   }
-    // }
+    if (Object.keys(moduleOptions.pages).length > 0) {
+      for (const locale of options.locales) {
+        const customPath = moduleOptions.pages[route.path]?.[locale]
+        if (customPath)
+          options.paths[locale] = customPath
+      }
+    }
 
     return options
   }

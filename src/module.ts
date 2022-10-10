@@ -5,7 +5,7 @@ import type { I18nRoutingOptions } from 'vue-i18n-routing'
 import { setupPages } from './pages'
 import { resolveLocales } from './locales'
 import { toCode } from './utils'
-import type { LocaleInfo } from './types'
+import type { CustomRoutePages, LocaleInfo } from './types'
 
 export type ModuleOptions = {
   /**
@@ -22,7 +22,7 @@ export type ModuleOptions = {
    * The app's default locale
    *
    * @remarks
-   * It's recommended to set this to some locale regardless of chosen strategy, as it will be used as a fallback locale when navigating to a non-existent route
+   * It's recommended to set this to some locale regardless of the chosen strategy, as it will be used as a fallback locale when navigating to a non-existent route
    *
    * @default 'en'
    */
@@ -71,6 +71,24 @@ export type ModuleOptions = {
   messages?: Record<string, any>
 
   /**
+   * Customize route paths for specific locale
+   *
+   * @remarks
+   * Intended to translate URLs in addition to having them prefixed with the locale code
+   *
+   * @example
+   * pages: {
+   *   about: {
+   *     en: '/about-us', // Accessible at `/about-us` (no prefix with `prefix_and_default` since it's the default locale)
+   *     fr: '/a-propos', // Accessible at `/fr/a-propos`
+   *     es: '/sobre'     // Accessible at `/es/sobre`
+   *   }
+   * }
+   * @default {}
+   */
+  pages?: CustomRoutePages
+
+  /**
    * Custom route overrides for the generated routes
    *
    * @example
@@ -82,13 +100,6 @@ export type ModuleOptions = {
    * @default {}
    */
   routeOverrides?: Record<string, string>
-
-  /**
-   * Localize route paths for a given locale
-   *
-   * @default {}
-   */
-  // pages?: CustomRoutePages
 } & Pick<I18nRoutingOptions, 'strategy'>
 
 export default defineNuxtModule<ModuleOptions>({
@@ -107,7 +118,7 @@ export default defineNuxtModule<ModuleOptions>({
     langImports: false,
     messages: {},
     strategy: 'no_prefix',
-    // pages: {},
+    pages: {},
     routeOverrides: {},
     lazy: true,
   },
@@ -127,10 +138,14 @@ export default defineNuxtModule<ModuleOptions>({
           syncLocaleFiles.add(localeObject)
       }
 
-      // Asynchronously import locale messages for the other locales
+      // Import locale messages for the other locales
       for (const locale of localeInfo) {
-        if (!syncLocaleFiles.has(locale) && !asyncLocaleFiles.has(locale))
-          (options.lazy ? asyncLocaleFiles : syncLocaleFiles).add(locale)
+        if (!syncLocaleFiles.has(locale) && !asyncLocaleFiles.has(locale)) {
+          (options.strategy !== 'no_prefix' && options.lazy
+            ? asyncLocaleFiles
+            : syncLocaleFiles
+          ).add(locale)
+        }
       }
     }
 
@@ -155,7 +170,6 @@ export default defineNuxtModule<ModuleOptions>({
 ${[...syncLocaleFiles]
   .map(({ code, path }) => genImport(path, genSafeVariableName(`locale_${code}`)))
   .join('\n')}
-
 export const options = {${Object.entries(options)
   .map(([key, value]) => `${key}: ${toCode(value)}`)
   .join(',')}};
