@@ -75,7 +75,7 @@ export type ModuleOptions = {
    *
    * @example
    * routeOverrides: {
-   *   // Set default locale index page as the app's root page
+   *   // Set `en` (default locale) index page as the app's root page
    *   '/en': '/',
    * }
    *

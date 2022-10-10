@@ -17,7 +17,7 @@ export function setupPages(
     const localizedPages = localizeRoutes(pages, {
       ...options,
       includeUprefixedFallback,
-      optionsResolver: getRouteOptionsResolver(nuxt.options.dir.pages),
+      optionsResolver: getRouteOptionsResolver(),
     })
     pages.splice(0, pages.length)
     pages.unshift(...(localizedPages as NuxtPage[]))
@@ -33,22 +33,17 @@ export function setupPages(
   })
 }
 
-function getRouteOptionsResolver(pagesDir: string): RouteOptionsResolver {
+function getRouteOptionsResolver(): RouteOptionsResolver {
   return function (route, localeCodes): ComputedRouteOptions | null {
     const options: ComputedRouteOptions = {
       locales: localeCodes,
       paths: {},
     }
-    const pattern = new RegExp(`${pagesDir}/`, 'i')
-    const chunkName = route.chunkName ? route.chunkName.replace(pattern, '') : route.name
-
-    if (!chunkName)
-      return options
 
     // Set custom localized route paths
     // if (moduleOptions.pages) {
     //   for (const locale of options.locales) {
-    //     const customPath = moduleOptions.pages[chunkName]?.[locale]
+    //     const customPath = moduleOptions.pages?.[route.path]?.[locale]
     //     if (customPath)
     //       options.paths[locale] = customPath
     //   }
