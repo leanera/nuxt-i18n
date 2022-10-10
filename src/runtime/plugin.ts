@@ -1,5 +1,5 @@
 import { createI18n } from '@leanera/vue-i18n'
-import { createLocaleFromRouteGetter } from 'vue-i18n-routing'
+import { DEFAULT_LOCALE_ROUTE_NAME_SUFFIX, DEFAULT_ROUTES_NAME_SEPARATOR, createLocaleFromRouteGetter } from 'vue-i18n-routing'
 import { addRouteMiddleware, defineNuxtPlugin, useRoute } from '#imports'
 import { localeMessages, options } from '#build/i18n.options'
 
@@ -9,10 +9,11 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const { defaultLocale, langImports, locales, messages = {} } = options
   const hasLocaleMessages = Object.keys(localeMessages).length > 0
 
-  // Constants taken from `vue-i18n-routing`
-  const routesNameSeparator = '___'
-  const defaultLocaleRouteNameSuffix = 'default'
-  const getLocaleFromRoute = createLocaleFromRouteGetter(locales, routesNameSeparator, defaultLocaleRouteNameSuffix)
+  const getLocaleFromRoute = createLocaleFromRouteGetter(
+    locales,
+    DEFAULT_ROUTES_NAME_SEPARATOR,
+    DEFAULT_LOCALE_ROUTE_NAME_SUFFIX,
+  )
   const currentLocale = getLocaleFromRoute(useRoute())
 
   // Resolves an async locale message import
