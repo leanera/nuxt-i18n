@@ -2,7 +2,7 @@ import { loadLocale } from '../utils'
 import { useNuxtApp } from '#imports'
 
 /**
- * Ensures to load the locale messages for the given locale
+ * Ensures to load the translation messages for the given locale
  * before switching to it
  */
 export async function useLazySwitchLocale(newLocale: string) {
