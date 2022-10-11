@@ -1,9 +1,10 @@
 import { resolve as pathResolve } from 'pathe'
-import { addImportsDir, addPluginTemplate, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { genDynamicImport, genImport, genSafeVariableName } from 'knitwork'
+import { addImportsDir, addPluginTemplate, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
+import type { LocaleMessages } from '@leanera/vue-i18n'
 import type { I18nRoutingOptions } from 'vue-i18n-routing'
-import { setupPages } from './pages'
 import { resolveLocales } from './locales'
+import { setupPages } from './pages'
 import { toCode } from './utils'
 import type { CustomRoutePages, LocaleInfo } from './types'
 
@@ -64,11 +65,11 @@ export type ModuleOptions = {
    * The app's default messages
    *
    * @remarks
-   * Can be left empty if auto-importing of locales is enabled
+   * Can be omitted if auto-importing of locales is enabled
    *
    * @default {}
    */
-  messages?: Record<string, any>
+  messages?: LocaleMessages
 
   /**
    * Customize route paths for specific locale
