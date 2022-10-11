@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     langImports: true,
     strategy: 'prefix',
     routeOverrides: {
-      // Set `en` (default locale) index page as the app's root page
+      // Set default locale's index page as the app's root page
       '/en': '/',
       // Use `en` catch-all page for all other locales
       '/en/:id(.*)*': '/:id(.*)*',

@@ -5,7 +5,7 @@ import type { LocaleMessages } from '@leanera/vue-i18n'
 import type { I18nRoutingOptions } from 'vue-i18n-routing'
 import { resolveLocales } from './locales'
 import { setupPages } from './pages'
-import { toCode } from './utils'
+import { logger, toCode } from './utils'
 import type { CustomRoutePages, LocaleInfo } from './types'
 
 export type ModuleOptions = {
@@ -94,7 +94,7 @@ export type ModuleOptions = {
    *
    * @example
    * routeOverrides: {
-   *   // Set `en` (default locale) index page as the app's root page
+   *   // Set default locale's index page as the app's root page
    *   '/en': '/',
    * }
    *
@@ -113,7 +113,7 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   defaults: {
-    defaultLocale: 'en',
+    defaultLocale: '',
     locales: [],
     langDir: 'locales',
     langImports: false,
@@ -127,6 +127,16 @@ export default defineNuxtModule<ModuleOptions>({
     const { resolve } = createResolver(import.meta.url)
     const langPath = options.langImports && options.langDir ? pathResolve(nuxt.options.srcDir, options.langDir!) : undefined
     const localeInfo = langPath ? await resolveLocales(langPath) : []
+
+    if (!options.defaultLocale) {
+      logger.warn('Missing default locale, falling back to `en`')
+      options.defaultLocale = 'en'
+    }
+
+    if (!options.locales?.length) {
+      logger.warn('Locales option is empty, falling back to using the default locale only')
+      options.locales = [options.defaultLocale]
+    }
 
     const syncLocaleFiles = new Set<LocaleInfo>()
     const asyncLocaleFiles = new Set<LocaleInfo>()
