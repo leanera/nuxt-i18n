@@ -1,6 +1,13 @@
-import { localeMessages } from '#build/i18n.options'
+import { DEFAULT_LOCALE_ROUTE_NAME_SUFFIX, DEFAULT_ROUTES_NAME_SEPARATOR, createLocaleFromRouteGetter } from 'vue-i18n-routing'
+import { localeMessages, options } from '#build/i18n.options'
 
 const loadedLocales = new Set<string>()
+
+export const getLocaleFromRoute = createLocaleFromRouteGetter(
+  options.locales,
+  DEFAULT_ROUTES_NAME_SEPARATOR,
+  DEFAULT_LOCALE_ROUTE_NAME_SUFFIX,
+)
 
 // Resolves an async locale message import
 export async function loadMessage(locale: string) {

@@ -1,14 +1,19 @@
 <script setup lang="ts">
-const { defaultLocale, locale, locales, t, setLocale } = useI18n()
+const { defaultLocale, locale, locales, t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 
 const localeSelect = ref(locale.value)
 
 watch(localeSelect, async (newLocale, oldLocale) => {
-  const to = route.path === '/'
-    ? `/${newLocale}`
-    : route.fullPath.replace(new RegExp(`^/${oldLocale}`), `/${newLocale}`)
+  let to = route.fullPath.replace(new RegExp(`^/${oldLocale}`), `/${newLocale}`)
+
+  // Handle special index page (overwritten route in `nuxt.config.ts`)
+  if (route.path === '/')
+    to = `/${newLocale}`
+  else if (to === `/${defaultLocale}`)
+    to = '/'
+
   router.push(to)
 })
 </script>
