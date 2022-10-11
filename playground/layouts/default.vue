@@ -1,13 +1,14 @@
 <script setup lang="ts">
-const { locale, locales, t } = useI18n()
+const { defaultLocale, locale, locales, t, setLocale } = useI18n()
 const route = useRoute()
 const router = useRouter()
 
 const localeSelect = ref(locale.value)
 
 watch(localeSelect, async (newLocale, oldLocale) => {
-  await useLazySwitchLocale(newLocale)
-  const to = route.fullPath.replace(new RegExp(`^/${oldLocale}`), `/${newLocale}`)
+  const to = route.path === '/'
+    ? `/${newLocale}`
+    : route.fullPath.replace(new RegExp(`^/${oldLocale}`), `/${newLocale}`)
   router.push(to)
 })
 </script>
@@ -15,7 +16,7 @@ watch(localeSelect, async (newLocale, oldLocale) => {
 <template>
   <div>
     <header>
-      <NuxtLink to="/">
+      <NuxtLink :to="`/${locale !== defaultLocale ? `${locale}/` : ''}`">
         {{ t('menu.home') }}
       </NuxtLink>
       /
