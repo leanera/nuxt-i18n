@@ -30,11 +30,11 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     messages,
   })
 
+  nuxtApp.vueApp.use(i18n)
+
   // Set locale from the current route
   if (currentLocale && locales.includes(currentLocale))
     i18n.setLocale(currentLocale)
-
-  nuxtApp.vueApp.use(i18n)
 
   // Add route middleware to load locale messages for the target route
   if (process.client && hasLocaleMessages && lazy && strategy !== 'no_prefix') {

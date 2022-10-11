@@ -1,6 +1,6 @@
 import { resolve as pathResolve } from 'pathe'
 import { genDynamicImport, genImport, genSafeVariableName } from 'knitwork'
-import { addImportsDir, addPluginTemplate, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addImportsDir, addPluginTemplate, addTemplate, createResolver, defineNuxtModule, extendViteConfig, resolveModule } from '@nuxt/kit'
 import type { LocaleMessages } from '@leanera/vue-i18n'
 import type { I18nRoutingOptions } from 'vue-i18n-routing'
 import { resolveLocales } from './locales'
@@ -23,7 +23,7 @@ export type ModuleOptions = {
    * The app's default locale
    *
    * @remarks
-   * It's recommended to set this to some locale regardless of the chosen strategy, as it will be used as a fallback locale when navigating to a non-existent route
+   * It's recommended to set this to some locale regardless of the chosen strategy, as it will be used as a fallback locale
    *
    * @default 'en'
    */
@@ -195,6 +195,17 @@ export declare const options: Required<ModuleOptions>;
 export declare const localeMessages: Record<string, () => Promise<Record<string, any>>>;
 `.trimStart()
       },
+    })
+
+    // Reduce bundle size for `vue-i18n` from @intlify, although not bundled
+    // into the final app, only used by `vue-i18n-routing`. Therefore, some
+    // console warnings about the bundle size of `vue-i18n` will be shown,
+    // which we want to suppress.
+    extendViteConfig((config) => {
+      config.define = config.define || {}
+      config.define.__VUE_I18N_FULL_INSTALL__ = 'false'
+      config.define.__VUE_I18N_LEGACY_API__ = 'false'
+      config.define.__INTLIFY_PROD_DEVTOOLS__ = 'false'
     })
   },
 })
