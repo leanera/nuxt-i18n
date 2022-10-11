@@ -1,6 +1,6 @@
 import { resolve as pathResolve } from 'pathe'
 import { genDynamicImport, genImport, genSafeVariableName } from 'knitwork'
-import { addImportsDir, addPluginTemplate, addTemplate, createResolver, defineNuxtModule, extendViteConfig, resolveModule } from '@nuxt/kit'
+import { addImportsDir, addPluginTemplate, addTemplate, createResolver, defineNuxtModule, extendViteConfig } from '@nuxt/kit'
 import type { LocaleMessages } from '@leanera/vue-i18n'
 import type { I18nRoutingOptions } from 'vue-i18n-routing'
 import { resolveLocales } from './locales'
