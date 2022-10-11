@@ -1,3 +1,7 @@
+import { useLogger } from '@nuxt/kit'
+
+export const logger = useLogger('@leanera/nuxt-i18n')
+
 export const isFunction = <T extends Function>(val: any): val is T => typeof val === 'function'
 export const isString = (val: unknown): val is string => typeof val === 'string'
 export const isRegExp = (val: unknown): val is RegExp => Object.prototype.toString.call(val) === '[object RegExp]'
