@@ -5,8 +5,8 @@ const router = useRouter()
 
 const localeSelect = ref(locale.value)
 
-watch(localeSelect, async (newLocale, oldLocale) => {
-  let to = route.fullPath.replace(new RegExp(`^/${oldLocale}`), `/${newLocale}`)
+watch(localeSelect, async (newLocale) => {
+  let to = useLocalePath(route.fullPath, newLocale)
 
   // Handle special index page (overwritten route in `nuxt.config.ts`)
   if (route.path === '/')
@@ -21,7 +21,7 @@ watch(localeSelect, async (newLocale, oldLocale) => {
 <template>
   <div>
     <header>
-      <NuxtLink :to="`/${locale !== defaultLocale ? `${locale}/` : ''}`">
+      <NuxtLink :to="locale === defaultLocale ? '/' : `/${locale}`">
         {{ t('menu.home') }}
       </NuxtLink>
       /
@@ -30,7 +30,7 @@ watch(localeSelect, async (newLocale, oldLocale) => {
       </NuxtLink>
       /
       <form class="language">
-        <label for="locale-select">{{ t('language') }}</label>
+        <label for="locale-select">{{ t('language') }}:&nbsp;</label>
         <select id="locale-select" v-model="localeSelect">
           <option v-for="i in locales" :key="i" :value="i">
             {{ i }}
