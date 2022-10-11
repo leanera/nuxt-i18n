@@ -1,12 +1,11 @@
 import { createI18n } from '@leanera/vue-i18n'
 import { DEFAULT_LOCALE_ROUTE_NAME_SUFFIX, DEFAULT_ROUTES_NAME_SEPARATOR, createLocaleFromRouteGetter } from 'vue-i18n-routing'
+import { loadLocale } from './utils'
 import { addRouteMiddleware, defineNuxtPlugin, useRoute } from '#imports'
 import { localeMessages, options } from '#build/i18n.options'
 
-const loadedLocales = new Set<string>()
-
 export default defineNuxtPlugin(async (nuxtApp) => {
-  const { defaultLocale, langImports, locales, messages = {} } = options
+  const { defaultLocale, locales, messages = {} } = options
   const hasLocaleMessages = Object.keys(localeMessages).length > 0
 
   const getLocaleFromRoute = createLocaleFromRouteGetter(
@@ -16,51 +15,19 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   )
   const currentLocale = getLocaleFromRoute(useRoute())
 
-  // Resolves an async locale message import
-  async function loadMessage(locale: string) {
-    let messages: Record<string, any> = {}
-    const loader = localeMessages[locale]
-
-    if (loader) {
-      try {
-        messages = await loader().then((r: any) => r.default || r)
-      }
-      catch (e: any) {
-        console.error('[nuxt-i18n]', 'Failed locale loading:', e.message)
-      }
-    }
-    else {
-      console.warn('[nuxt-i18n]', `Could not find "${locale}" locale`)
-    }
-
-    return messages
-  }
-
-  // Loads a locale message if not already loaded
-  async function loadLocale(locale: string) {
-    if (loadedLocales.has(locale))
-      return
-
-    const message = await loadMessage(locale)
-    if (message != null) {
-      Object.assign(messages, { [locale]: message })
-      loadedLocales.add(locale)
-    }
-  }
-
   // Loads all locale messages if auto-import is enabled
-  if (langImports && hasLocaleMessages) {
+  if (hasLocaleMessages) {
     // Import all locale messages for SSR
     if (process.server) {
-      await Promise.all(locales.map(locale => loadLocale(locale)))
+      await Promise.all(locales.map(locale => loadLocale(messages, locale)))
     }
     // Import default locale message for client
     else {
-      await loadLocale(defaultLocale)
+      await loadLocale(messages, defaultLocale)
 
       // Import locale messages for the current route
       if (currentLocale && locales.includes(currentLocale))
-        await loadLocale(currentLocale)
+        await loadLocale(messages, currentLocale)
     }
   }
 
@@ -77,13 +44,16 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   nuxtApp.vueApp.use(i18n)
 
   // Add route middleware to load locale messages for the target route
-  if (langImports && hasLocaleMessages && process.client) {
+  if (hasLocaleMessages && process.client) {
     addRouteMiddleware(
       'locale-changing',
       async (to) => {
         const targetLocale = getLocaleFromRoute(to)
         if (targetLocale && locales.includes(targetLocale))
-          await loadLocale(targetLocale)
+          await loadLocale(i18n.messages, targetLocale)
+
+        // Set target locale
+        i18n.setLocale(targetLocale)
       },
       { global: true },
     )
