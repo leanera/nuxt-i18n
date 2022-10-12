@@ -186,7 +186,7 @@ export default defineNuxtConfig({
     locales: ['en', 'es', 'fr'],
     defaultLocale: 'en',
     autoImports: true,
-    langDir: 'lang/',
+    langDir: 'lang',
   },
 })
 ```
