@@ -50,14 +50,16 @@ export type ModuleOptions = {
   langImports?: boolean
 
   /**
-   * Whether to lazily load locale messages in the client
+   * Whether to lazy-load locale messages in the client
    *
    * @remarks
    * If enabled, locale messages will be loaded on demand when the user navigates to a route with a different locale
    *
-   * This has no effect if `strategy` is set to `no_prefix` or the `langImports` option is disabled
+   * This has no effect if the `langImports` option is disabled
    *
-   * @default true
+   * Note: When `strategy` is set to `no_prefix`, use the `useLazyLocaleSwitch` composable to ensure the translation messages are loaded before switching locales
+   *
+   * @default false
    */
   lazy?: boolean
 
@@ -151,12 +153,8 @@ export default defineNuxtModule<ModuleOptions>({
 
       // Import locale messages for the other locales
       for (const locale of localeInfo) {
-        if (!syncLocaleFiles.has(locale) && !asyncLocaleFiles.has(locale)) {
-          (options.strategy !== 'no_prefix' && options.lazy
-            ? asyncLocaleFiles
-            : syncLocaleFiles
-          ).add(locale)
-        }
+        if (!syncLocaleFiles.has(locale) && !asyncLocaleFiles.has(locale))
+          (options.lazy ? asyncLocaleFiles : syncLocaleFiles).add(locale)
       }
     }
 

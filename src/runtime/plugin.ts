@@ -10,8 +10,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   // Loads all locale messages if auto-import is enabled
   if (hasLocaleMessages) {
-    // Import all locale messages for SSR, if `lazy` is disabled or `strategy` is `no_prefix`
-    if (process.server || !lazy || strategy === 'no_prefix') {
+    // Import all locale messages for SSR, if `lazy` is disabled
+    if (process.server || !lazy) {
       await Promise.all(locales.map(locale => loadLocale(messages, locale)))
     }
     // Import default locale message for client
