@@ -200,6 +200,7 @@ export default defineNuxtConfig({
 Instead of auto-importing (with or without lazy-loading), you can manually import your translations and merge them into the global locale messages object:
 
 ```ts
+// Import from JSON or an ES module
 import de from './locales/de.json'
 import en from './locales/en.json'
 
@@ -220,7 +221,7 @@ The locale messages defined above will be passed as the `messages` option when i
 ### Module Options
 
 ```ts
-type ModuleOptions = {
+interface ModuleOptions {
   /**
    * List of locales supported by your app
    *
@@ -286,6 +287,21 @@ type ModuleOptions = {
   messages?: LocaleMessages
 
   /**
+   * Routes strategy
+   *
+   * @remarks
+   * Can be set to one of the following:
+   *
+   * - `no_prefix`: routes won't have a locale prefix
+   * - `prefix_except_default`: locale prefix added for every locale except default
+   * - `prefix`: locale prefix added for every locale
+   * - `prefix_and_default`: locale prefix added for every locale and default
+   *
+   * @default 'no_prefix'
+   */
+  strategy?: 'no_prefix' | 'prefix' | 'prefix_except_default' | 'prefix_and_default'
+
+  /**
    * Customize route paths for specific locale
    *
    * @remarks
@@ -315,7 +331,7 @@ type ModuleOptions = {
    * @default {}
    */
   routeOverrides?: Record<string, string>
-} & Pick<I18nRoutingOptions, 'strategy'>
+}
 ```
 
 ### Composables
