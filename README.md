@@ -79,8 +79,8 @@ You can opt-in to override the Nuxt default routes with added locale prefixes to
 For example, if your app supports two languages: German and English as the default language, and you have the following pages in your project:
 
 ```
-└── pages
-    ├── about
+└── pages/
+    ├── about/
     │   └── index.vue
     └── index.vue
 ```
