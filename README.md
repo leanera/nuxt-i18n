@@ -95,22 +95,22 @@ This would result in the following routes being generated for the `prefix_except
   {
     path: '/',
     name: 'index___en',
-  // ...
+    // ...
   },
   {
     path: '/de/',
     name: 'index___de',
-  // ...
+    // ...
   },
   {
     path: '/about',
     name: 'about___en',
-  // ...
+    // ...
   },
   {
     path: '/de/about',
     name: 'about___de',
-  // ...
+    // ...
   }
 ]
 ```
