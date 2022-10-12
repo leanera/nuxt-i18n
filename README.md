@@ -4,6 +4,8 @@
 
 > [Nuxt 3](https://v3.nuxtjs.org) module for internationalization w/ locale auto-imports & localized routing.
 
+This module's intention is not to provide a full-blown solution for internationalization like @nuxtjs/i18n, but offer a lean, effective and lightweight set of tools to cover your needs.
+
 ## Key Features
 
 - 🪡 Integration with [@leanera/vue-i18n](https://github.com/leanera/vue-i18n)
