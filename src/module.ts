@@ -2,13 +2,12 @@ import { resolve as pathResolve } from 'pathe'
 import { genDynamicImport, genImport, genSafeVariableName } from 'knitwork'
 import { addImportsDir, addPluginTemplate, addTemplate, createResolver, defineNuxtModule, extendViteConfig } from '@nuxt/kit'
 import type { LocaleMessages } from '@leanera/vue-i18n'
-import type { I18nRoutingOptions } from 'vue-i18n-routing'
 import { resolveLocales } from './locales'
 import { setupPages } from './pages'
 import { logger, toCode } from './utils'
 import type { CustomRoutePages, LocaleInfo } from './types'
 
-export type ModuleOptions = {
+export interface ModuleOptions {
   /**
    * List of locales supported by your app
    *
@@ -74,6 +73,21 @@ export type ModuleOptions = {
   messages?: LocaleMessages
 
   /**
+   * Routes strategy
+   *
+   * @remarks
+   * Can be set to one of the following:
+   *
+   * - `no_prefix`: routes won't have a locale prefix
+   * - `prefix_except_default`: locale prefix added for every locale except default
+   * - `prefix`: locale prefix added for every locale
+   * - `prefix_and_default`: locale prefix added for every locale and default
+   *
+   * @default 'no_prefix'
+   */
+  strategy?: 'no_prefix' | 'prefix' | 'prefix_except_default' | 'prefix_and_default'
+
+  /**
    * Customize route paths for specific locale
    *
    * @remarks
@@ -103,7 +117,7 @@ export type ModuleOptions = {
    * @default {}
    */
   routeOverrides?: Record<string, string>
-} & Pick<I18nRoutingOptions, 'strategy'>
+}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
