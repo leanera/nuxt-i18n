@@ -86,7 +86,7 @@ For example, if your app supports two languages: German and English as the defau
 This would result in the following routes being generated for the `prefix_except_default` strategy:
 
 <details>
-<summary>🆗 Routes Tree</summary>
+<summary>🎄 Routes Tree</summary>
 
 ```ts
 [
@@ -157,11 +157,12 @@ For apps that contain a lot of translated content, it is preferable not to bundl
 
 Enable translations lazy-loading by following these steps:
 
-- Enable dynmic imports by setting `autoImports` option to `true`.
+- Enable file-based translations by setting `autoImports` option to `true`.
+- Enable dynamic imports by setting `lazy` option to `true`.
 - Optionally set the `langDir` option to configure the directory that contains your translation files. Defaults to `locales`.
-- Set the `locales` option as an array of all possible languages.
+- Make sure the `locales` option covers possible languages.
 
-> ℹ️ Translation files must be called the same as their locale.
+> ℹ️ Translation files must be called the same as their locale. Currently, JSON, JSON5 and YAML are supported.
 
 Example files structure:
 
@@ -186,9 +187,9 @@ export default defineNuxtConfig({
 })
 ```
 
-Currently, JSON, JSON5 and YAML are supported.
-
 > ℹ️ If you prefer to import file-based translations but don't want to dynamically import them, set the `lazy` module option to `false`.
+
+> ⚠️ The global route middleware to lazy-load translations when switching locales won't run when the `no_prefix` strategy is chosen. Use the `useLazyLocaleSwitch` composable for changing the language, it will load the corresponding translations.
 
 ### Manual Translations
 
@@ -209,6 +210,8 @@ export default defineNuxtConfig({
 ```
 
 The locale messages defined above will be passed as the `messages` option when initializing `@leanera/vue-i18n` with `createI18n()`.
+
+## API
 
 ### Module Options
 
@@ -255,14 +258,16 @@ type ModuleOptions = {
   langImports?: boolean
 
   /**
-   * Whether to lazily load locale messages in the client
+   * Whether to lazy-load locale messages in the client
    *
    * @remarks
    * If enabled, locale messages will be loaded on demand when the user navigates to a route with a different locale
    *
-   * This has no effect if `strategy` is set to `no_prefix` or the `langImports` option is disabled
+   * This has no effect if the `langImports` option is disabled
    *
-   * @default true
+   * Note: When `strategy` is set to `no_prefix`, use the `useLazyLocaleSwitch` composable to ensure the translation messages are loaded before switching locales
+   *
+   * @default false
    */
   lazy?: boolean
 
@@ -307,6 +312,70 @@ type ModuleOptions = {
    */
   routeOverrides?: Record<string, string>
 } & Pick<I18nRoutingOptions, 'strategy'>
+```
+
+### Composables
+
+#### `useI18n`
+
+Gives access to the current i18n instance.
+
+```ts
+function useI18n(): UseI18n
+
+interface UseI18n {
+  defaultLocale: string
+  locale: ComputedRef<string>
+  locales: readonly string[]
+  messages: LocaleMessages
+  t: (key: string, params?: any) => string
+  setLocale: (locale: string) => void
+  getLocale: () => string
+  addMessages: (newMessages: LocaleMessages) => void
+}
+```
+
+#### `useRouteLocale`
+
+Returns the current locale based on the route name. Preferred for strategies other than `no_prefix`.
+
+**Types**
+
+```ts
+function useRouteLocale(): string
+```
+
+#### `useLocalePath`
+
+Returns a translated path for a given route. Preferred for strategies other than `no_prefix`.
+
+**Types**
+
+```ts
+function useLocalePath(path: string, locale?: string): string
+```
+
+**Example**
+
+```ts
+const to = useLocalePath(useRoute().fullPath, 'de')
+useRouter().push(to)
+```
+
+#### `useLazyLocaleSwitch`
+
+Ensures to load the translation messages for the given locale before switching to it. Mostly needed for the `no_prefix` strategy.
+
+**Types**
+
+```ts
+function useLazyLocaleSwitch(newLocale: string): Promise<void>
+```
+
+**Example**
+
+```ts
+await useLazyLocaleSwitch('en')
 ```
 
 ## 💻 Development
