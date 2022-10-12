@@ -4,7 +4,7 @@ import { addImportsDir, addPluginTemplate, addTemplate, createResolver, defineNu
 import type { LocaleMessages } from '@leanera/vue-i18n'
 import { resolveLocales } from './locales'
 import { setupPages } from './pages'
-import { logger, toCode } from './utils'
+import { logger } from './utils'
 import type { CustomRoutePages, LocaleInfo } from './types'
 
 export interface ModuleOptions {
@@ -193,15 +193,13 @@ export default defineNuxtModule<ModuleOptions>({
 ${[...syncLocaleFiles]
   .map(({ code, path }) => genImport(path, genSafeVariableName(`locale_${code}`)))
   .join('\n')}
-export const options = {${Object.entries(options)
-  .map(([key, value]) => `${key}: ${toCode(value)}`)
-  .join(',')}};
+export const options = ${JSON.stringify(options, null, 2)};
 export const localeMessages = {
 ${[...syncLocaleFiles]
-  .map(({ code }) => `  ${toCode(code)}: () => Promise.resolve(${genSafeVariableName(`locale_${code}`)}),`)
+  .map(({ code }) => `  ${JSON.stringify(code)}: () => Promise.resolve(${genSafeVariableName(`locale_${code}`)}),`)
   .join('\n')}
 ${[...asyncLocaleFiles]
-  .map(({ code, path }) => `  ${toCode(code)}: ${genDynamicImport(path)},`)
+  .map(({ code, path }) => `  ${JSON.stringify(code)}: ${genDynamicImport(path)},`)
   .join('\n')}
 };
 `.trimStart()
