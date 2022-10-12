@@ -175,8 +175,8 @@ export default defineNuxtModule<ModuleOptions>({
     // Transpile runtime
     nuxt.options.build.transpile.push(resolve('runtime'))
 
-    // Setup internationalized Nuxt pages
-    if (options.strategy !== 'no_prefix' && options.locales?.length)
+    // Setup localized pages
+    if (options.strategy !== 'no_prefix')
       setupPages(options as Required<ModuleOptions>, nuxt)
 
     // Add i18n plugin
