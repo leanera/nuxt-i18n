@@ -9,10 +9,10 @@ This module's intention is not to provide a full-blown solution for internationa
 ## Key Features
 
 - 🪡 Integration with [@leanera/vue-i18n](https://github.com/leanera/vue-i18n)
-- 🗜 Composable usage with `useI18n`
-- 🪢 Auto-importable locale messages (JSON/YAML support)
-- 💇‍♀️ Lazy-loading of translation messages
-- 🛣 Automatic routes generation and custom paths
+- 🗜 Composable usage with [`useI18n`](#usei18n)
+- 🪢 [Auto-importable](#auto-importing--lazy-loading-translations) locale messages (JSON/YAML support)
+- 💇‍♀️ [Lazy-loading](#auto-importing--lazy-loading-translations) of translation messages
+- 🛣 [Automatic routes generation](#routing--strategies) and custom paths
 
 ## Setup
 
@@ -153,15 +153,17 @@ export default defineNuxtConfig({
 })
 ```
 
-### Lazy-Loading Translations
+### Auto-Importing & Lazy-Loading Translations
 
 For apps that contain a lot of translated content, it is preferable not to bundle all the messages in the main bundle, but rather lazy-load only the language that the users selected. By defining a directory where translation files are located, locale messages can be dynamically imported when the app loads or when the user switches to another language.
 
-Enable translations lazy-loading by following these steps:
+However, you can also benefit from the advantages of auto-import without enabling dynamic imports.
 
-- Enable file-based translations by setting `autoImports` option to `true`.
-- Enable dynamic imports by setting `lazy` option to `true`.
-- Optionally set the `langDir` option to configure the directory that contains your translation files. Defaults to `locales`.
+How to enable file-based translations with or without lazy-loading:
+
+- Set the `autoImports` option to `true`.
+- Enable dynamic imports by setting the `lazy` option to `true`.
+- Optionally, configure the `langDir` option to a directory that contains your translation files. Defaults to `locales`.
 - Make sure the `locales` option covers possible languages.
 
 > ℹ️ Translation files must be called the same as their locale. Currently, JSON, JSON5 and YAML are supported.
