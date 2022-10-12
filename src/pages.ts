@@ -2,7 +2,6 @@ import { extendPages } from '@nuxt/kit'
 import { localizeRoutes } from 'vue-i18n-routing'
 import type { Nuxt, NuxtPage } from '@nuxt/schema'
 import type { ComputedRouteOptions, RouteOptionsResolver } from 'vue-i18n-routing'
-import { logger } from './utils'
 import type { ModuleOptions } from './module'
 
 export function setupPages(
@@ -29,8 +28,8 @@ export function setupPages(
         page.path = value
     }
 
-    if (nuxt.options.test)
-      logger.info('Localized pages:', pages)
+    // if (nuxt.options.test)
+    //   logger.info('Localized pages:', pages)
   })
 }
 
