@@ -323,7 +323,7 @@ type ModuleOptions = {
 Gives access to the current i18n instance.
 
 ```ts
-function useI18n(): UseI18n
+declare function useI18n(): UseI18n
 
 interface UseI18n {
   defaultLocale: string
@@ -344,7 +344,7 @@ Returns the current locale based on the route name. Preferred for strategies oth
 **Types**
 
 ```ts
-function useRouteLocale(): string
+declare function useRouteLocale(): string
 ```
 
 #### `useLocalePath`
@@ -354,7 +354,7 @@ Returns a translated path for a given route. Preferred for strategies other than
 **Types**
 
 ```ts
-function useLocalePath(path: string, locale?: string): string
+declare function useLocalePath(path: string, locale?: string): string
 ```
 
 **Example**
@@ -371,7 +371,7 @@ Ensures to load the translation messages for the given locale before switching t
 **Types**
 
 ```ts
-function useLazyLocaleSwitch(newLocale: string): Promise<void>
+declare function useLazyLocaleSwitch(newLocale: string): Promise<void>
 ```
 
 **Example**
