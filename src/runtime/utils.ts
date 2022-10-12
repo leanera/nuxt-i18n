@@ -10,7 +10,7 @@ export const getLocaleFromRoute = createLocaleFromRouteGetter(
 )
 
 // Resolves an async locale message import
-export async function loadMessage(locale: string) {
+export async function loadMessages(locale: string) {
   let messages: Record<string, any> = {}
   const loader = localeMessages[locale]
 
@@ -18,12 +18,12 @@ export async function loadMessage(locale: string) {
     try {
       messages = await loader().then((r: any) => r.default || r)
     }
-    catch (e: any) {
-      console.error('[nuxt-i18n]', 'Failed locale loading:', e.message)
+    catch (e) {
+      console.error('[nuxt-i18n]', 'Failed loading locale messages:', (e as any).message)
     }
   }
   else {
-    console.warn('[nuxt-i18n]', `Could not find "${locale}" locale`)
+    console.warn('[nuxt-i18n]', `No locale messages found for locale "${locale}"`)
   }
 
   return messages
@@ -34,9 +34,9 @@ export async function loadLocale(messages: Record<string, any>, locale: string) 
   if (loadedLocales.has(locale))
     return
 
-  const message = await loadMessage(locale)
-  if (message != null) {
-    Object.assign(messages, { [locale]: message })
+  const result = await loadMessages(locale)
+  if (result != null) {
+    messages[locale] = result
     loadedLocales.add(locale)
   }
 }
