@@ -10,7 +10,7 @@ export function useLocalePath(path: string, locale?: string): string {
     to = `/${currentLocale}${path}`
 
   return to.replace(
-    new RegExp(`^/${useRouteLocale()}`),
+    new RegExp(`^/${currentLocale}`),
     options.strategy !== 'prefix' && locale === options.defaultLocale
       ? ''
       : `/${locale}`,
