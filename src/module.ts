@@ -159,11 +159,9 @@ export default defineNuxtModule<ModuleOptions>({
 
     if (langPath) {
       // Synchronously import locale messages for the default locale
-      if (options.defaultLocale) {
-        const localeObject = localeInfo.find(({ code }) => code === options.defaultLocale)
-        if (localeObject)
-          syncLocaleFiles.add(localeObject)
-      }
+      const localeObject = localeInfo.find(({ code }) => code === options.defaultLocale)
+      if (localeObject)
+        syncLocaleFiles.add(localeObject)
 
       // Import locale messages for the other locales
       for (const locale of localeInfo) {
