@@ -3,6 +3,7 @@ import { localizeRoutes } from 'vue-i18n-routing'
 import type { Nuxt, NuxtPage } from '@nuxt/schema'
 import type { ComputedRouteOptions, RouteOptionsResolver } from 'vue-i18n-routing'
 import type { ModuleOptions } from './module'
+import { logger } from './utils'
 
 export function setupPages(
   options: Required<ModuleOptions>,
@@ -26,6 +27,8 @@ export function setupPages(
       const page = pages.find(({ path }) => path === key)
       if (page)
         page.path = value
+      else
+        logger.error(`Couldn't find page for route override \`${key}\``)
     }
 
     // if (nuxt.options.test)
