@@ -137,7 +137,7 @@ export default defineNuxtModule<ModuleOptions>({
     strategy: 'no_prefix',
     pages: {},
     routeOverrides: {},
-    lazy: true,
+    lazy: false,
   },
   async setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
