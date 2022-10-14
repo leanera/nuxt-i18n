@@ -351,6 +351,16 @@ interface ModuleOptions {
    * @default {}
    */
   routeOverrides?: Record<string, string>
+
+  /**
+   * Print verbose debug information to the console during development mode
+   *
+   * @remarks
+   * For example the list of localized routes (if enabled)
+   *
+   * @default false
+   */
+  logs?: boolean
 }
 ```
 
