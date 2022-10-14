@@ -65,7 +65,7 @@ const { locale, t } = useI18n()
 </script>
 
 <template>
-  <div>{{ locale }}</div>
+  <div>Language: {{ locale }}</div>
   <p>{{ t('welcome') }}</p>
 </template>
 ```
@@ -74,7 +74,7 @@ const { locale, t } = useI18n()
 
 ### Routing & Strategies
 
-You can opt-in to override the Nuxt default routes with added locale prefixes to every URL by using one of the built-in routing strategies. By default, the Nuxt routes stay untouched (`no_prefix` strategy).
+You can opt-in to override the Nuxt default routes with added locale prefixes to every URL by using one of the built-in routing strategies. By default, the generated routes stay untouched (`no_prefix` strategy).
 
 For example, if your app supports two languages: German and English as the default language, and you have the following pages in your project:
 
@@ -179,7 +179,7 @@ However, you can also benefit from the advantages of auto-import without enablin
 
 How to enable file-based translations with or without lazy-loading:
 
-- Set the `autoImports` option to `true`.
+- Set the `langImports` option to `true`.
 - Enable dynamic imports by setting the `lazy` option to `true`.
 - Optionally, configure the `langDir` option to a directory that contains your translation files. Defaults to `locales`.
 - Make sure the `locales` option covers possible languages.
@@ -203,7 +203,7 @@ export default defineNuxtConfig({
   i18n: {
     locales: ['en', 'es', 'fr'],
     defaultLocale: 'en',
-    autoImports: true,
+    langImports: true,
     langDir: 'lang',
   },
 })
@@ -219,14 +219,16 @@ Instead of auto-importing (with or without lazy-loading), you can manually impor
 
 ```ts
 // Import from JSON or an ES module
-import de from './locales/de.json'
 import en from './locales/en.json'
+import de from './locales/de.json'
 
 export default defineNuxtConfig({
   i18n: {
+    locales: ['en', 'de'],
+    defaultLocale: 'en',
     messages: {
-      de,
       en,
+      de,
     },
   },
 })
@@ -366,7 +368,7 @@ interface UseI18n {
   locale: ComputedRef<string>
   locales: readonly string[]
   messages: LocaleMessages
-  t: (key: string, params?: any) => string
+  t: (key: string, params?: Record<string, any>) => string
   setLocale: (locale: string) => void
   getLocale: () => string
 }
@@ -389,7 +391,10 @@ Returns a translated path for a given route. Preferred when working with all rou
 **Types**
 
 ```ts
-declare function useLocalePath(path: string, locale?: string): string
+declare function useLocalePath(
+  path: string,
+  locale: string,
+): string
 ```
 
 **Example**
@@ -406,7 +411,7 @@ Ensures to load the translation messages for the given locale before switching t
 **Types**
 
 ```ts
-declare function useLazyLocaleSwitch(newLocale: string): Promise<void>
+declare function useLazyLocaleSwitch(locale: string): Promise<void>
 ```
 
 **Example**

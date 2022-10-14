@@ -1,7 +1,7 @@
 import { useRouteLocale } from '#imports'
 import { options } from '#build/i18n.options'
 
-export function useLocalePath(path: string, locale?: string): string {
+export function useLocalePath(path: string, locale: string): string {
   const currentLocale = useRouteLocale()
   let to = path
 
