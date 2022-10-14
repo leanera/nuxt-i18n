@@ -1,6 +1,7 @@
 import { DEFAULT_LOCALE_ROUTE_NAME_SUFFIX, DEFAULT_ROUTES_NAME_SEPARATOR, createLocaleFromRouteGetter } from 'vue-i18n-routing'
 import { localeMessages, options } from '#build/i18n.options'
 
+const CONSOLE_PREFIX = '[nuxt-i18n]'
 const loadedLocales = new Set<string>()
 
 export const getLocaleFromRoute = createLocaleFromRouteGetter(
@@ -14,16 +15,16 @@ export async function loadMessages(locale: string) {
   let messages: Record<string, any> = {}
   const loader = localeMessages[locale]
 
-  if (loader) {
-    try {
-      messages = await loader().then((r: any) => r.default || r)
-    }
-    catch (e) {
-      console.error('[nuxt-i18n]', 'Failed loading locale messages:', (e as any).message)
-    }
+  if (!loader) {
+    console.warn(CONSOLE_PREFIX, `No locale messages found for locale "${locale}"`)
+    return
   }
-  else {
-    console.warn('[nuxt-i18n]', `No locale messages found for locale "${locale}"`)
+
+  try {
+    messages = await loader().then((r: any) => r.default || r)
+  }
+  catch (e) {
+    console.error(CONSOLE_PREFIX, 'Failed loading locale messages:', (e as any).message)
   }
 
   return messages
@@ -35,7 +36,7 @@ export async function loadLocale(messages: Record<string, any>, locale: string) 
     return
 
   const result = await loadMessages(locale)
-  if (result != null) {
+  if (result) {
     messages[locale] = result
     loadedLocales.add(locale)
   }

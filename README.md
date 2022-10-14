@@ -204,12 +204,12 @@ export default defineNuxtConfig({
     locales: ['en', 'es', 'fr'],
     defaultLocale: 'en',
     langImports: true,
-    langDir: 'lang',
+    lazy: true,
   },
 })
 ```
 
-> ℹ️ If you prefer to import file-based translations but don't want to dynamically import them, set the `lazy` module option to `false`.
+> ℹ️ If you prefer to import file-based translations but don't want to dynamically import them, omit the `lazy` module option, as it defaults to `false`.
 
 > ⚠️ The global route middleware to lazy-load translations when switching locales won't run when the `no_prefix` strategy is chosen. Use the `useLazyLocaleSwitch` composable for changing the language, it will load the corresponding translations beforehand.
 

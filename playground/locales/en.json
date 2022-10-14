@@ -1,5 +1,5 @@
 {
-  "title": "nuxt-i18n-routes",
+  "title": "@leanera/nuxt-i18n",
   "hello": "Hello, {name}!",
   "language": "Language",
   "menu": {

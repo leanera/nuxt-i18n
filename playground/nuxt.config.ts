@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     locales: ['en', 'de'],
     langImports: true,
+    lazy: true,
     strategy: 'prefix',
     routeOverrides: {
       // Set default locale's index page as the app's root page
