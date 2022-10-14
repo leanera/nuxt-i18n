@@ -369,7 +369,6 @@ interface UseI18n {
   t: (key: string, params?: any) => string
   setLocale: (locale: string) => void
   getLocale: () => string
-  addMessages: (messages: LocaleMessages) => void
 }
 ```
 
