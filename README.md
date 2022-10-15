@@ -33,10 +33,6 @@ Add `@leanera/nuxt-i18n` to your `nuxt.confg.ts`:
 ```ts
 export default defineNuxtConfig({
   modules: ['@leanera/nuxt-i18n'],
-
-  i18n: {
-    // Module options
-  }
 })
 ```
 
