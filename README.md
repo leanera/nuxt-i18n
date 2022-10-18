@@ -384,7 +384,7 @@ interface UseI18n {
 
 Returns the current locale based on the route name. Preferred for strategies other than `no_prefix`.
 
-**Types**
+**Type Declarations**
 
 ```ts
 declare function useRouteLocale(): string
@@ -394,7 +394,7 @@ declare function useRouteLocale(): string
 
 Returns a translated path for a given route. Preferred when working with all routing strategies except `no_prefix`.
 
-**Types**
+**Type Declarations**
 
 ```ts
 declare function useLocalePath(
@@ -414,7 +414,7 @@ useRouter().push(to)
 
 Ensures to load the translation messages for the given locale before switching to it. Mostly needed for the `no_prefix` strategy.
 
-**Types**
+**Type Declarations**
 
 ```ts
 declare function useLazyLocaleSwitch(locale: string): Promise<void>
