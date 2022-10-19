@@ -1,3 +1,5 @@
+![Nuxt i18n module](./.github/og.png)
+
 # @leanera/nuxt-i18n
 
 [![npm version](https://img.shields.io/npm/v/@leanera/nuxt-i18n?color=a1b858&label=)](https://www.npmjs.com/package/@leanera/nuxt-i18n)
