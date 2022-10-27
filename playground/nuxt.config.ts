@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       // Use `en` catch-all page for all other locales
       '/en/:id(.*)*': '/:id(.*)*',
     },
+    logs: true,
   },
 
   typescript: {
