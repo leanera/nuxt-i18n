@@ -46,7 +46,7 @@ function getRouteOptionsResolver(moduleOptions: Required<ModuleOptions>): RouteO
     // Set custom localized route paths
     if (Object.keys(moduleOptions.pages).length > 0) {
       for (const locale of options.locales) {
-        const customPath = moduleOptions.pages[route.path]?.[locale]
+        const customPath = moduleOptions.pages[route.name!]?.[locale]
         if (customPath)
           options.paths[locale] = customPath
       }
