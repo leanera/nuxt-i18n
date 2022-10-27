@@ -1,10 +1,11 @@
 import { DEFAULT_LOCALE_ROUTE_NAME_SUFFIX, DEFAULT_ROUTES_NAME_SEPARATOR, createLocaleFromRouteGetter } from 'vue-i18n-routing'
+import type { RouteLocationNormalized, RouteLocationNormalizedLoaded } from 'vue-router'
 import { localeMessages, options } from '#build/i18n.options'
 
 const CONSOLE_PREFIX = '[nuxt-i18n]'
 const loadedLocales = new Set<string>()
 
-export const getLocaleFromRoute = createLocaleFromRouteGetter(
+export const getLocaleFromRoute: (route: RouteLocationNormalizedLoaded | RouteLocationNormalized | string) => string = createLocaleFromRouteGetter(
   options.locales,
   DEFAULT_ROUTES_NAME_SEPARATOR,
   DEFAULT_LOCALE_ROUTE_NAME_SUFFIX,
