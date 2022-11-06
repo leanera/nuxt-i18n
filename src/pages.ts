@@ -9,10 +9,7 @@ export function setupPages(
   options: Required<ModuleOptions>,
   nuxt: Nuxt,
 ) {
-  let includeUprefixedFallback = nuxt.options.target === 'static'
-  nuxt.hook('generate:before', () => {
-    includeUprefixedFallback = true
-  })
+  const includeUprefixedFallback = nuxt.options._generate
 
   extendPages((pages) => {
     const localizedPages = localizeRoutes(pages, {
