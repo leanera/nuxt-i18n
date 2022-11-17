@@ -431,7 +431,7 @@ await useLazyLocaleSwitch('en')
 ## 💻 Development
 
 1. Clone this repository
-2. Enable [Corepack](https://github.com/nodejs/corepack) using `corepack enable` (use `npm i -g corepack` for Node.js < 16.10)
+2. Enable [Corepack](https://github.com/nodejs/corepack) using `corepack enable`
 3. Install dependencies using `pnpm install`
 4. Run `pnpm run dev:prepare`
 5. Start development server using `pnpm run dev`
