@@ -392,14 +392,14 @@ Returns the current locale based on the route name. Preferred for strategies oth
 function useRouteLocale(): string
 ```
 
-#### `useLocalePath`
+#### `useLocalizedPath`
 
 Returns a translated path for a given route. Preferred when working with all routing strategies except `no_prefix`.
 
 **Type Declarations**
 
 ```ts
-function useLocalePath(
+function useLocalizedPath(
   path: string,
   locale: string,
 ): string
@@ -408,7 +408,7 @@ function useLocalePath(
 **Example**
 
 ```ts
-const to = useLocalePath(useRoute().fullPath, 'de')
+const to = useLocalizedPath(useRoute().fullPath, 'de')
 useRouter().push(to)
 ```
 
