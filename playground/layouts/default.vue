@@ -6,7 +6,7 @@ const router = useRouter()
 const localeSelect = ref(locale.value)
 
 watch(localeSelect, async (newLocale) => {
-  let to = useLocalePath(route.fullPath, newLocale)
+  let to = useLocalizedPath(route.fullPath, newLocale)
 
   // Handle special index page (overwritten route in `nuxt.config.ts`)
   if (route.path === '/')
