@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['../src/module'],
+  modules: ['../src/module.ts'],
 
   i18n: {
     defaultLocale: 'en',

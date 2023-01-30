@@ -2,7 +2,7 @@
   "name": "@leanera/nuxt-i18n",
   "type": "module",
   "version": "0.3.13",
-  "packageManager": "pnpm@7.26.0",
+  "packageManager": "pnpm@7.26.2",
   "description": "Nuxt 3 module for internationalization w/ locale auto-imports & localized routing",
   "author": "LeanERA GmbH <https://github.com/leanera>",
   "license": "MIT",
