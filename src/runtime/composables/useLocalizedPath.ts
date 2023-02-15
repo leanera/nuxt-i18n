@@ -11,7 +11,7 @@ export function useLocalizedPath(path: string, locale: string): string {
 
   return to.replace(
     new RegExp(`^/${currentLocale}`),
-    options.strategy !== 'prefix' && locale === options.defaultLocale
+    (options.strategy !== 'prefix' && locale === options.defaultLocale)
       ? ''
       : `/${locale}`,
   )

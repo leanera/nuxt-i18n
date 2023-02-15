@@ -152,7 +152,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   async setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
-    const langPath = options.langImports && options.langDir ? pathResolve(nuxt.options.srcDir, options.langDir!) : undefined
+    const langPath = (options.langImports && options.langDir) ? pathResolve(nuxt.options.srcDir, options.langDir!) : undefined
     const localeInfo = langPath ? await resolveLocales(langPath) : []
 
     if (!options.defaultLocale) {
