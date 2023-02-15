@@ -1,7 +1,7 @@
 {
   "name": "@leanera/nuxt-i18n",
   "type": "module",
-  "version": "0.3.13",
+  "version": "0.3.14",
   "packageManager": "pnpm@7.27.0",
   "description": "Nuxt 3 module for internationalization w/ locale auto-imports & localized routing",
   "author": "LeanERA GmbH <https://github.com/leanera>",
