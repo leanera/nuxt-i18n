@@ -1,5 +1,5 @@
 import { extendPages } from '@nuxt/kit'
-import type { Nuxt, NuxtPage } from '@nuxt/schema'
+import type { Nuxt } from '@nuxt/schema'
 import { localizeRoutes } from './resolve'
 import type { ComputedRouteOptions, RouteOptionsResolver } from './resolve'
 import type { ModuleOptions } from './module'
@@ -18,7 +18,7 @@ export function setupPages(
       optionsResolver: getRouteOptionsResolver(options),
     })
     pages.splice(0, pages.length)
-    pages.unshift(...(localizedPages as NuxtPage[]))
+    pages.unshift(...localizedPages)
 
     for (const [key, value] of Object.entries(options.routeOverrides)) {
       const page = pages.find(({ path }) => path === key)
