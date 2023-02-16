@@ -1,11 +1,12 @@
 import { resolve as pathResolve } from 'pathe'
 import { genDynamicImport, genImport, genSafeVariableName } from 'knitwork'
-import { addImportsDir, addPluginTemplate, addTemplate, createResolver, defineNuxtModule, extendViteConfig } from '@nuxt/kit'
+import { addImportsDir, addPluginTemplate, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
 import type { LocaleMessages } from '@leanera/vue-i18n'
+import { DEFAULT_LOCALE, DEFAULT_LOCALE_ROUTE_NAME_SUFFIX, DEFAULT_ROUTES_NAME_SEPARATOR } from './constants'
 import { resolveLocales } from './locales'
 import { setupPages } from './pages'
 import { logger } from './utils'
-import type { CustomRoutePages, LocaleInfo } from './types'
+import type { CustomRoutePages, LocaleInfo, Strategies } from './types'
 
 export interface ModuleOptions {
   /**
@@ -85,7 +86,7 @@ export interface ModuleOptions {
    *
    * @default 'no_prefix'
    */
-  strategy?: 'no_prefix' | 'prefix' | 'prefix_except_default' | 'prefix_and_default'
+  strategy?: Strategies
 
   /**
    * Customize route paths for specific locale
@@ -139,7 +140,7 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   defaults: {
-    defaultLocale: '',
+    defaultLocale: DEFAULT_LOCALE,
     locales: [],
     langDir: 'locales',
     langImports: false,
@@ -199,6 +200,8 @@ export default defineNuxtModule<ModuleOptions>({
       filename: 'i18n.options.mjs',
       getContents() {
         return `
+export const DEFAULT_LOCALE_ROUTE_NAME_SUFFIX = ${JSON.stringify(DEFAULT_LOCALE_ROUTE_NAME_SUFFIX)};
+export const DEFAULT_ROUTES_NAME_SEPARATOR = ${JSON.stringify(DEFAULT_ROUTES_NAME_SEPARATOR)};
 ${[...syncLocaleFiles]
   .map(({ code, path }) => genImport(path, genSafeVariableName(`locale_${code}`)))
   .join('\n')}
@@ -220,21 +223,12 @@ ${[...asyncLocaleFiles]
       getContents() {
         return `
 ${genImport(resolve('module'), ['ModuleOptions'])}
+export declare const DEFAULT_LOCALE_ROUTE_NAME_SUFFIX: ${JSON.stringify(DEFAULT_LOCALE_ROUTE_NAME_SUFFIX)};
+export declare const DEFAULT_ROUTES_NAME_SEPARATOR: ${JSON.stringify(DEFAULT_ROUTES_NAME_SEPARATOR)};
 export declare const options: Required<ModuleOptions>;
 export declare const localeMessages: Record<string, () => Promise<Record<string, any>>>;
 `.trimStart()
       },
-    })
-
-    // Reduce bundle size for `vue-i18n` from @intlify, although not bundled
-    // into the final app, only used by `vue-i18n-routing`. Therefore, some
-    // console warnings about the bundle size of `vue-i18n` will be shown,
-    // which we want to suppress.
-    extendViteConfig((config) => {
-      config.define = config.define || {}
-      config.define.__VUE_I18N_FULL_INSTALL__ = 'false'
-      config.define.__VUE_I18N_LEGACY_API__ = 'false'
-      config.define.__INTLIFY_PROD_DEVTOOLS__ = 'false'
     })
   },
 })
