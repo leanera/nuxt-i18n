@@ -183,7 +183,7 @@ export function localizeRoutes(
       && routeOptions.locales.length > 0
     ) {
       componentOptions.locales = componentOptions.locales.filter(
-        locale => routeOptions.locales.includes(locale),
+        locale => routeOptions!.locales.includes(locale),
       )
     }
 
