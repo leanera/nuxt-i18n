@@ -442,4 +442,4 @@ await useLazyLocaleSwitch('en')
 
 ## License
 
-[MIT](./LICENSE) License © 2022 [LeanERA GmbH](https://github.com/leanera)
+[MIT](./LICENSE) License © 2022-2023 [Johann Schopplich](https://github.com/johannschopplich) & [LeanERA GmbH](https://github.com/leanera)

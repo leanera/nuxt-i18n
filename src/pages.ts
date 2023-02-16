@@ -1,7 +1,7 @@
 import { extendPages } from '@nuxt/kit'
-import { localizeRoutes } from 'vue-i18n-routing'
 import type { Nuxt, NuxtPage } from '@nuxt/schema'
-import type { ComputedRouteOptions, RouteOptionsResolver } from 'vue-i18n-routing'
+import { localizeRoutes } from './resolve'
+import type { ComputedRouteOptions, RouteOptionsResolver } from './resolve'
 import type { ModuleOptions } from './module'
 import { logger } from './utils'
 
