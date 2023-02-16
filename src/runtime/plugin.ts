@@ -39,7 +39,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   // Add route middleware to load locale messages for the target route
   if (process.client && hasLocaleMessages && lazy && strategy !== 'no_prefix') {
     addRouteMiddleware(
-      'locale-changing',
+      'i18n-set-locale',
       async (to) => {
         const targetLocale = getLocaleFromRoute(to)
         if (targetLocale && locales.includes(targetLocale)) {

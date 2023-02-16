@@ -3,6 +3,10 @@ import type {
   RouteLocationNormalizedLoaded,
 } from 'vue-router'
 
+export const isString = (val: unknown): val is string => typeof val === 'string'
+export const isObject = (val: unknown): val is Record<any, any> =>
+  val !== null && typeof val === 'object'
+
 export function getLocalesRegex(localeCodes: string[]) {
   return new RegExp(`^/(${localeCodes.join('|')})(?:/|$)`, 'i')
 }
@@ -29,9 +33,9 @@ export function createLocaleFromRouteGetter(
     route: string | RouteLocationNormalizedLoaded | RouteLocationNormalized,
   ): string {
     // Extract from route name
-    if (typeof route === 'object' && route !== null) {
+    if (isObject(route)) {
       if (route.name) {
-        const name = typeof route.name === 'string' ? route.name : route.name.toString()
+        const name = isString(route.name) ? route.name : route.name.toString()
         const matches = name.match(regexpName)
         if (matches && matches.length > 1)
           return matches[1]
@@ -43,7 +47,7 @@ export function createLocaleFromRouteGetter(
           return matches[1]
       }
     }
-    else if (typeof route === 'string') {
+    else if (isString(route)) {
       const matches = route.match(regexpPath)
       if (matches && matches.length > 1)
         return matches[1]
