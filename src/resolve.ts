@@ -168,6 +168,7 @@ export function localizeRoutes(
       locales,
       paths: {},
     }
+
     if (routeOptions != null)
       Object.assign(componentOptions, routeOptions)
 
@@ -181,13 +182,9 @@ export function localizeRoutes(
       && routeOptions.locales != null
       && routeOptions.locales.length > 0
     ) {
-      const filteredLocales = []
-      for (const locale of componentOptions.locales) {
-        if (routeOptions.locales.includes(locale))
-          filteredLocales.push(locale)
-      }
-
-      componentOptions.locales = filteredLocales
+      componentOptions.locales = componentOptions.locales.filter(
+        locale => routeOptions.locales.includes(locale),
+      )
     }
 
     return componentOptions.locales.reduce<NuxtPage[]>((_routes, locale) => {
@@ -230,13 +227,8 @@ export function localizeRoutes(
             defaultRoute.children = []
             for (const childRoute of route.children) {
               // `isExtraPageTree` argument is true to indicate that this is extra route added for `prefix_and_default` strategy
-              defaultRoute.children = defaultRoute.children.concat(
-                makeLocalizedRoutes(
-                  childRoute as NuxtPage,
-                  [locale],
-                  true,
-                  true,
-                ),
+              defaultRoute.children.push(
+                ...makeLocalizedRoutes(childRoute, [locale], true, true),
               )
             }
           }
@@ -269,12 +261,7 @@ export function localizeRoutes(
         )
       }
 
-      if (
-        shouldAddPrefix
-        && isDefaultLocale
-        && strategy === 'prefix'
-        && includeUprefixedFallback
-      )
+      if (shouldAddPrefix && isDefaultLocale && strategy === 'prefix' && includeUprefixedFallback)
         _routes.push({ ...route })
 
       localizedRoute.path = path
