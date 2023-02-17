@@ -9,7 +9,7 @@ watchEffect(() => {
 
 <template>
   <div>
-    <h1>{{ t('title') }}</h1>
+    <h1>{{ t('menu.home') }}</h1>
     <h2>{{ t('hello', { name }) }}</h2>
   </div>
 </template>

@@ -21,7 +21,9 @@ watch(localeSelect, async (newLocale) => {
 </script>
 
 <template>
-  <header class="mb-4">
+  <header>
+    <h2>@leanera/nuxt-i18n</h2>
+
     <NuxtLink :to="locale === defaultLocale ? '/' : `/${locale}`">
       {{ t('menu.home') }}
     </NuxtLink>
@@ -29,8 +31,8 @@ watch(localeSelect, async (newLocale) => {
     <NuxtLink :to="`/${locale}/about`">
       {{ t('menu.about') }}
     </NuxtLink>
-    /
-    <form class="inline-block">
+    <hr>
+    <form>
       <label for="locale-select">{{ t('language') }}:&nbsp;</label>
       <select id="locale-select" v-model="localeSelect">
         <option v-for="i in locales" :key="i" :value="i">

@@ -1,8 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: false,
-})
-
 const { defaultLocale, locale, locales, t } = useI18n()
 
 const data = {
@@ -12,16 +8,5 @@ const data = {
   message: t('menu.home'),
 }
 
-useHead({
-  script: [
-    {
-      children: JSON.stringify(data),
-      type: 'text/test-result',
-    },
-  ],
-})
+useTestResult(data)
 </script>
-
-<template>
-  <main />
-</template>
