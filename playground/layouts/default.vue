@@ -6,47 +6,41 @@ const router = useRouter()
 const localeSelect = ref(locale.value)
 
 watch(localeSelect, async (newLocale) => {
-  let to = useLocalizedPath(route.fullPath, newLocale)
+  const to = useLocalizedPath(route.fullPath, newLocale)
 
   // Handle special index page (overwritten route in `nuxt.config.ts`)
-  if (route.path === '/')
-    to = `/${newLocale}`
-  else if (to === `/${defaultLocale}`)
-    to = '/'
+  const routeMap = {
+    '/': `/${newLocale}`,
+    [`/${defaultLocale}`]: '/',
+  }
 
-  router.push(to)
+  router.push(
+    routeMap[to] ?? to,
+  )
 })
 </script>
 
 <template>
-  <div>
-    <header>
-      <NuxtLink :to="locale === defaultLocale ? '/' : `/${locale}`">
-        {{ t('menu.home') }}
-      </NuxtLink>
-      /
-      <NuxtLink :to="`/${locale}/about`">
-        {{ t('menu.about') }}
-      </NuxtLink>
-      /
-      <form class="language">
-        <label for="locale-select">{{ t('language') }}:&nbsp;</label>
-        <select id="locale-select" v-model="localeSelect">
-          <option v-for="i in locales" :key="i" :value="i">
-            {{ i }}
-          </option>
-        </select>
-      </form>
-    </header>
+  <header class="mb-4">
+    <NuxtLink :to="locale === defaultLocale ? '/' : `/${locale}`">
+      {{ t('menu.home') }}
+    </NuxtLink>
+    /
+    <NuxtLink :to="`/${locale}/about`">
+      {{ t('menu.about') }}
+    </NuxtLink>
+    /
+    <form class="inline-block">
+      <label for="locale-select">{{ t('language') }}:&nbsp;</label>
+      <select id="locale-select" v-model="localeSelect">
+        <option v-for="i in locales" :key="i" :value="i">
+          {{ i }}
+        </option>
+      </select>
+    </form>
+  </header>
 
-    <main>
-      <slot />
-    </main>
-  </div>
+  <main>
+    <slot />
+  </main>
 </template>
-
-<style scoped>
-.language {
-  display: inline-block;
-}
-</style>

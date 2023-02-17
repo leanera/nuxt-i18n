@@ -8,14 +8,8 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="container">
+  <div>
     <h1>{{ t('title') }}</h1>
     <h2>{{ t('hello', { name }) }}</h2>
   </div>
 </template>
-
-<style scoped>
-.container {
-  margin-top: 1rem;
-}
-</style>

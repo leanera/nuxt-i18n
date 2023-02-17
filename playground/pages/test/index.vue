@@ -9,7 +9,7 @@ const data = {
   defaultLocale,
   locale: locale.value,
   locales: locales.values,
-  message: t('title'),
+  message: t('menu.home'),
 }
 
 useHead({
