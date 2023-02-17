@@ -3,7 +3,7 @@ import { getLocaleFromRoute } from '../utils'
 import { useRoute } from '#imports'
 
 export function useRouteLocale(
-  route: RouteLocationNormalizedLoaded | RouteLocationNormalized | string = useRoute(),
+  route: string | RouteLocationNormalizedLoaded | RouteLocationNormalized = useRoute(),
 ) {
   return getLocaleFromRoute(route)
 }
