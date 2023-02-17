@@ -6,6 +6,7 @@ import {
   DEFAULT_STRATEGY,
   DEFAULT_TRAILING_SLASH,
 } from './constants'
+import { adjustRoutePathForTrailingSlash } from './utils'
 import type { Strategies } from './types'
 
 export interface ComputedRouteOptions {
@@ -93,17 +94,6 @@ export interface I18nRoutingLocalizationOptions {
    * @default undefined
    */
   optionsResolver?: RouteOptionsResolver
-}
-
-function adjustRoutePathForTrailingSlash(
-  pagePath: string,
-  trailingSlash: boolean,
-  isChildWithRelativePath: boolean,
-) {
-  return (
-    pagePath.replace(/\/+$/, '') + (trailingSlash ? '/' : '')
-    || (isChildWithRelativePath ? '' : '/')
-  )
 }
 
 function prefixable(options: LocalizeRoutesPrefixableOptions): boolean {

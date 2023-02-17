@@ -1,0 +1,5 @@
+// Vitest Snapshot v1
+
+exports[`nuxt-i18n > renders the test page correctly for "de" locale 1`] = `"{\\"defaultLocale\\":\\"en\\",\\"locale\\":\\"de\\",\\"message\\":\\"@leanera/nuxt-i18n\\"}"`;
+
+exports[`nuxt-i18n > renders the test page correctly for default locale 1`] = `"{\\"defaultLocale\\":\\"en\\",\\"locale\\":\\"en\\",\\"message\\":\\"@leanera/nuxt-i18n\\"}"`;
