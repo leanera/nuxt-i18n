@@ -37,7 +37,7 @@
     "lint:fix": "eslint . --fix",
     "test": "vitest",
     "test:run": "vitest --run",
-    "test:types": "npx vue-tsc --noEmit",
+    "test:types": "tsc --noEmit",
     "release": "bumpp --commit --push --tag",
     "prepare": "nuxi prepare playground",
     "prepack": "nuxt-module-build"
