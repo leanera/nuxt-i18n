@@ -2,16 +2,38 @@
 
 exports[`nuxt-i18n > renders the test page correctly for "de" locale 1`] = `
 {
+  "composables": {
+    "useLocalizedPath": [
+      "/en/test",
+      "/de/test",
+    ],
+    "useRouteLocale": "de",
+  },
   "defaultLocale": "en",
   "locale": "de",
+  "locales": [
+    "en",
+    "de",
+  ],
   "message": "Start",
 }
 `;
 
 exports[`nuxt-i18n > renders the test page correctly for default locale 1`] = `
 {
+  "composables": {
+    "useLocalizedPath": [
+      "/en/test",
+      "/de/test",
+    ],
+    "useRouteLocale": "en",
+  },
   "defaultLocale": "en",
   "locale": "en",
+  "locales": [
+    "en",
+    "de",
+  ],
   "message": "Home",
 }
 `;
