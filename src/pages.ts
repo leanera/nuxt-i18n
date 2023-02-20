@@ -45,8 +45,5 @@ export function setupPages(
       else
         logger.error(`Couldn't find page for route override \`${key}\``)
     }
-
-    if (nuxt.options.dev && options.logs)
-      logger.info('Localized pages:', pages)
   })
 }
