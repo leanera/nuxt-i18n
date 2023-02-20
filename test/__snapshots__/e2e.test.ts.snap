@@ -1,33 +1,213 @@
 // Vitest Snapshot v1
 
-exports[`nuxt-i18n > renders the test page correctly for "de" locale 1`] = `
-{
-  "composables": {
-    "useLocalizedPath": [
-      "/en/test",
-      "/de/test",
-    ],
-    "useRouteLocale": "de",
+exports[`nuxt-i18n > builds routes tree 1`] = `
+[
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "test-composables___en",
+    "path": "/en/test/composables",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
   },
-  "defaultLocale": "en",
-  "locale": "de",
-  "locales": [
-    "en",
-    "de",
-  ],
-  "message": "Start",
-}
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "test-composables___de",
+    "path": "/de/test/composables",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "test-i18n___en",
+    "path": "/en/test/i18n",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "test-i18n___de",
+    "path": "/de/test/i18n",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {
+      "default": {
+        "__file": "/Users/johannschopplich/Git/nuxt-i18n/playground/pages/test/routes.vue",
+        "__name": "routes",
+      },
+    },
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "test-routes___en",
+    "path": "/en/test/routes",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "test-routes___de",
+    "path": "/de/test/routes",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "about___en",
+    "path": "/en/about",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "about___de",
+    "path": "/de/about",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "test___en",
+    "path": "/en/test",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "test___de",
+    "path": "/de/test",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "index___en",
+    "path": "/",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "index___de",
+    "path": "/de",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "id___de",
+    "path": "/de/:id(.*)*",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+  {
+    "children": [],
+    "components": {},
+    "enterCallbacks": {},
+    "instances": {},
+    "leaveGuards": {},
+    "meta": {},
+    "name": "id___en",
+    "path": "/:id(.*)*",
+    "props": {
+      "default": false,
+    },
+    "updateGuards": {},
+  },
+]
 `;
 
-exports[`nuxt-i18n > renders the test page correctly for default locale 1`] = `
+exports[`nuxt-i18n > contains i18n data 1`] = `
 {
-  "composables": {
-    "useLocalizedPath": [
-      "/en/test",
-      "/de/test",
-    ],
-    "useRouteLocale": "en",
-  },
   "defaultLocale": "en",
   "locale": "en",
   "locales": [
@@ -35,5 +215,29 @@ exports[`nuxt-i18n > renders the test page correctly for default locale 1`] = `
     "de",
   ],
   "message": "Home",
+}
+`;
+
+exports[`nuxt-i18n > renders message for "de" 1`] = `"Start"`;
+
+exports[`nuxt-i18n > renders message for default locale 1`] = `"Home"`;
+
+exports[`nuxt-i18n > returns composables data for "de" 1`] = `
+{
+  "useLocalizedPath": [
+    "/en/test/composables",
+    "/de/test/composables",
+  ],
+  "useRouteLocale": "de",
+}
+`;
+
+exports[`nuxt-i18n > returns composables data for default locale 1`] = `
+{
+  "useLocalizedPath": [
+    "/en/test/composables",
+    "/de/test/composables",
+  ],
+  "useRouteLocale": "en",
 }
 `;
