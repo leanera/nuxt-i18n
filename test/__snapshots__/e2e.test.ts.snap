@@ -4,7 +4,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
 [
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -18,7 +17,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -32,7 +30,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -46,7 +43,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -60,12 +56,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {
-      "default": {
-        "__file": "/Users/johannschopplich/Git/nuxt-i18n/playground/pages/test/routes.vue",
-        "__name": "routes",
-      },
-    },
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -79,7 +69,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -93,7 +82,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -107,7 +95,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -121,7 +108,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -135,7 +121,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -149,7 +134,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -163,7 +147,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -177,7 +160,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},
@@ -191,7 +173,6 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
   },
   {
     "children": [],
-    "components": {},
     "enterCallbacks": {},
     "instances": {},
     "leaveGuards": {},

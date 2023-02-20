@@ -9,7 +9,7 @@ watch(localeSelect, async (newLocale) => {
   const to = useLocalizedPath(route.fullPath, newLocale)
 
   // Handle special index page (overwritten route in `nuxt.config.ts`)
-  const routeMap = {
+  const routeMap: Record<string, string> = {
     '/': `/${newLocale}`,
     [`/${defaultLocale}`]: '/',
   }
