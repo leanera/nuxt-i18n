@@ -1,5 +1,10 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-useTestResult(t('menu.home'))
+useTestResult({
+  translations: [
+    t('menu.home'),
+    t('unknown'),
+  ],
+})
 </script>
