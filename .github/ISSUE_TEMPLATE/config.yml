@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📚 @leanera/nuxt-i18n Documentation
+    url: https://github.com/leanera/nuxt-i18n#readme
+    about: Check the documentation for usage of @leanera/nuxt-i18n
