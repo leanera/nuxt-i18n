@@ -9,7 +9,7 @@ import { localizeRoutes } from '../../src/routes'
 describe('localizeRoutes', () => {
   describe('basic', () => {
     it('should be localized routing', () => {
-      const routes = [
+      const routes: NuxtPage[] = [
         {
           path: '/',
           name: 'home',
@@ -20,7 +20,7 @@ describe('localizeRoutes', () => {
         },
       ]
       const localeCodes = ['en', 'ja']
-      const localizedRoutes = localizeRoutes(routes as NuxtPage[], {
+      const localizedRoutes = localizeRoutes(routes, {
         locales: localeCodes,
       })
 
@@ -40,7 +40,7 @@ describe('localizeRoutes', () => {
 
   describe('has children', () => {
     it('should be localized routing', () => {
-      const routes = [
+      const routes: NuxtPage[] = [
         {
           path: '/user/:id',
           name: 'user',
@@ -56,10 +56,10 @@ describe('localizeRoutes', () => {
           ],
         },
       ]
-      const children = routes[0].children as NuxtPage[]
+      const children = routes[0].children
 
       const localeCodes = ['en', 'ja']
-      const localizedRoutes = localizeRoutes(routes as NuxtPage[], {
+      const localizedRoutes = localizeRoutes(routes, {
         locales: localeCodes,
       })
 
@@ -83,7 +83,7 @@ describe('localizeRoutes', () => {
 
   describe('trailing slash', () => {
     it('should be localized routing', () => {
-      const routes = [
+      const routes: NuxtPage[] = [
         {
           path: '/',
           name: 'home',
@@ -94,7 +94,7 @@ describe('localizeRoutes', () => {
         },
       ]
       const localeCodes = ['en', 'ja']
-      const localizedRoutes = localizeRoutes(routes as NuxtPage[], {
+      const localizedRoutes = localizeRoutes(routes, {
         locales: localeCodes,
         trailingSlash: true,
       })
@@ -115,7 +115,7 @@ describe('localizeRoutes', () => {
 
   describe('route name separator', () => {
     it('should be localized routing', () => {
-      const routes = [
+      const routes: NuxtPage[] = [
         {
           path: '/',
           name: 'home',
@@ -126,7 +126,7 @@ describe('localizeRoutes', () => {
         },
       ]
       const localeCodes = ['en', 'ja']
-      const localizedRoutes = localizeRoutes(routes as NuxtPage[], {
+      const localizedRoutes = localizeRoutes(routes, {
         locales: localeCodes,
         routesNameSeparator: '__',
       })
@@ -147,7 +147,7 @@ describe('localizeRoutes', () => {
 
   describe('strategy: "prefix_and_default"', () => {
     it('should be localized routing', () => {
-      const routes = [
+      const routes: NuxtPage[] = [
         {
           path: '/',
           name: 'home',
@@ -158,7 +158,7 @@ describe('localizeRoutes', () => {
         },
       ]
       const localeCodes = ['en', 'ja']
-      const localizedRoutes = localizeRoutes(routes as NuxtPage[], {
+      const localizedRoutes = localizeRoutes(routes, {
         defaultLocale: 'en',
         strategy: 'prefix_and_default',
         locales: localeCodes,
@@ -170,7 +170,7 @@ describe('localizeRoutes', () => {
 
   describe('strategy: "prefix_except_default"', () => {
     it('should be localized routing', () => {
-      const routes = [
+      const routes: NuxtPage[] = [
         {
           path: '/',
           name: 'home',
@@ -181,7 +181,7 @@ describe('localizeRoutes', () => {
         },
       ]
       const localeCodes = ['en', 'ja']
-      const localizedRoutes = localizeRoutes(routes as NuxtPage[], {
+      const localizedRoutes = localizeRoutes(routes, {
         defaultLocale: 'en',
         strategy: 'prefix_except_default',
         locales: localeCodes,
@@ -193,7 +193,7 @@ describe('localizeRoutes', () => {
 
   describe('strategy: "prefix"', () => {
     it('should be localized routing', () => {
-      const routes = [
+      const routes: NuxtPage[] = [
         {
           path: '/',
           name: 'home',
@@ -204,7 +204,7 @@ describe('localizeRoutes', () => {
         },
       ]
       const localeCodes = ['en', 'ja']
-      const localizedRoutes = localizeRoutes(routes as NuxtPage[], {
+      const localizedRoutes = localizeRoutes(routes, {
         defaultLocale: 'en',
         strategy: 'prefix',
         locales: localeCodes,
@@ -217,7 +217,7 @@ describe('localizeRoutes', () => {
 
   describe('strategy: "no_prefix"', () => {
     it('should be localized routing', () => {
-      const routes = [
+      const routes: NuxtPage[] = [
         {
           path: '/',
           name: 'home',
@@ -228,7 +228,7 @@ describe('localizeRoutes', () => {
         },
       ]
       const localeCodes = ['en', 'ja']
-      const localizedRoutes = localizeRoutes(routes as NuxtPage[], {
+      const localizedRoutes = localizeRoutes(routes, {
         defaultLocale: 'en',
         strategy: 'no_prefix',
         locales: localeCodes,
@@ -240,7 +240,7 @@ describe('localizeRoutes', () => {
 
   describe('Route optiosn resolver: routing disable', () => {
     it('should be disabled routing', () => {
-      const routes = [
+      const routes: NuxtPage[] = [
         {
           path: '/',
           name: 'home',
@@ -251,7 +251,7 @@ describe('localizeRoutes', () => {
         },
       ]
       const localeCodes = ['en', 'ja']
-      const localizedRoutes = localizeRoutes(routes as NuxtPage[], {
+      const localizedRoutes = localizeRoutes(routes, {
         locales: localeCodes,
         optionsResolver: () => null,
       })
