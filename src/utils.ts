@@ -9,10 +9,7 @@ export function adjustRoutePathForTrailingSlash(
   trailingSlash: boolean,
   isChildWithRelativePath: boolean,
 ) {
-  return (
-    pagePath.replace(/\/+$/, '') + (trailingSlash ? '/' : '')
-    || (isChildWithRelativePath ? '' : '/')
-  )
+  return pagePath.replace(/\/+$/, '') + (trailingSlash ? '/' : '') || (isChildWithRelativePath ? '' : '/')
 }
 
 export function getRouteName(routeName?: string | symbol | null) {
@@ -39,6 +36,7 @@ export function getLocaleRouteName(
   },
 ) {
   let name = getRouteName(routeName) + (strategy === 'no_prefix' ? '' : routesNameSeparator + locale)
+
   if (locale === defaultLocale && strategy === 'prefix_and_default')
     name += routesNameSeparator + defaultLocaleRouteNameSuffix
 
