@@ -15,7 +15,7 @@ export default defineNuxtConfig({
       },
     },
     routeOverrides: {
-      // Use `en` catch-all page as fallback for all other locales
+      // Use `en` catch-all page as fallback for non-existing pages
       '/en/:id(.*)*': '/:id(.*)*',
     },
     logs: true,

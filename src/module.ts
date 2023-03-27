@@ -89,15 +89,15 @@ export interface ModuleOptions {
   strategy?: Strategies
 
   /**
-   * Customize route paths for specific locale
+   * Customize the names of the paths for a specific locale
    *
    * @remarks
-   * Intended to translate URLs in addition to having them prefixed with the locale code
+   * In some cases, you might want to translate URLs in addition to having them prefixed with the locale code
    *
    * @example
    * pages: {
    *   about: {
-   *     en: '/about-us', // Accessible at `/about-us` (no prefix with `prefix_and_default` since it's the default locale)
+   *     en: '/about-us', // Accessible at `/en/about-us`
    *     fr: '/a-propos', // Accessible at `/fr/a-propos`
    *     es: '/sobre'     // Accessible at `/es/sobre`
    *   }
@@ -111,8 +111,8 @@ export interface ModuleOptions {
    *
    * @example
    * routeOverrides: {
-   *   // Set default locale's index page as the app's root page
-   *   '/en': '/',
+   *   // Use `en` catch-all page as fallback for non-existing pages
+   *   '/en/:id(.*)*': '/:id(.*)*'
    * }
    *
    * @default {}
