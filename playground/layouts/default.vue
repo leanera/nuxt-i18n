@@ -1,21 +1,22 @@
 <script setup lang="ts">
-const { defaultLocale, locale, locales, t } = useI18n()
+const { locale, locales, t } = useI18n()
 const route = useRoute()
-const router = useRouter()
 
 const localeSelect = ref(locale.value)
+const routeMap: Record<string, Record<string, string>> = {
+  about: {
+    en: '/about',
+    de: '/ueber-uns',
+  },
+}
 
 watch(localeSelect, async (newLocale) => {
   const to = useLocalizedPath(route.fullPath, newLocale)
+  // eslint-disable-next-line no-console
+  console.log(to)
 
-  // Handle special index page (overwritten route in `nuxt.config.ts`)
-  const routeMap: Record<string, string> = {
-    '/': `/${newLocale}`,
-    [`/${defaultLocale}`]: '/',
-  }
-
-  router.push(
-    routeMap[to] ?? to,
+  await navigateTo(
+    `/${newLocale}`,
   )
 })
 </script>
@@ -24,14 +25,14 @@ watch(localeSelect, async (newLocale) => {
   <header>
     <h2>@leanera/nuxt-i18n</h2>
 
-    <NuxtLink :to="locale === defaultLocale ? '/' : `/${locale}`">
+    <NuxtLink :to=" `/${locale}`">
       {{ t('menu.home') }}
     </NuxtLink>
     /
-    <NuxtLink :to="`/${locale}/about`">
+    <NuxtLink :to="`/${locale}${routeMap.about[locale]}`">
       {{ t('menu.about') }}
     </NuxtLink>
-    <hr>
+
     <form>
       <label for="locale-select">{{ t('language') }}:&nbsp;</label>
       <select id="locale-select" v-model="localeSelect">

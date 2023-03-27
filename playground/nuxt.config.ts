@@ -9,10 +9,13 @@ export default defineNuxtConfig({
     langImports: true,
     lazy: true,
     strategy: 'prefix',
+    pages: {
+      about: {
+        de: '/ueber-uns',
+      },
+    },
     routeOverrides: {
-      // Set default locale's index page as the app's root page
-      '/en': '/',
-      // Use `en` catch-all page for all other locales
+      // Use `en` catch-all page as fallback for all other locales
       '/en/:id(.*)*': '/:id(.*)*',
     },
     logs: true,
