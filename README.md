@@ -162,12 +162,35 @@ A strategy may be set using the `strategy` module option. Make sure that you hav
 ```ts
 export default defineNuxtConfig({
   i18n: {
-    locales: ['en'],
+    locales: ['en', 'de'],
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
   },
 })
 ```
+
+### Custom Route Paths
+
+In some cases, you might want to translate URLs in addition to having them prefixed with the locale code. For example, you might want to have a route like `/about` in English and `/ueber-uns` in German. You can achieve this by defining a custom path for the route in the `nuxt.config.ts` file:
+
+```ts
+export default defineNuxtConfig({
+  i18n: {
+    locales: ['en', 'de', 'fr'],
+    defaultLocale: 'en',
+    pages: {
+      about: {
+        de: '/ueber-uns',
+        fr: '/a-propos'
+      }
+    }
+  }
+})
+```
+
+> ℹ️ Each key within the pages object should correspond to the relative file-based path (excluding the `.vue` file extension) of the route within your `pages` directory.
+
+Customized route paths must start with a `/` and not include the locale prefix.
 
 ### Auto-Importing & Lazy-Loading Translations
 
@@ -202,8 +225,8 @@ export default defineNuxtConfig({
     locales: ['en', 'es', 'fr'],
     defaultLocale: 'en',
     langImports: true,
-    lazy: true,
-  },
+    lazy: true
+  }
 })
 ```
 
