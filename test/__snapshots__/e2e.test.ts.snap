@@ -100,7 +100,7 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
     "leaveGuards": {},
     "meta": {},
     "name": "about___de",
-    "path": "/de/about",
+    "path": "/de/ueber-uns",
     "props": {
       "default": false,
     },
@@ -139,7 +139,7 @@ exports[`nuxt-i18n > builds routes tree 1`] = `
     "leaveGuards": {},
     "meta": {},
     "name": "index___en",
-    "path": "/",
+    "path": "/en",
     "props": {
       "default": false,
     },
