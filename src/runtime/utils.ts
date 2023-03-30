@@ -1,3 +1,4 @@
+/* eslint-disable antfu/top-level-function */
 import type {
   RouteLocationNormalized,
   RouteLocationNormalizedLoaded,
