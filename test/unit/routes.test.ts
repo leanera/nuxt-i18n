@@ -56,7 +56,7 @@ describe('localizeRoutes', () => {
           ],
         },
       ]
-      const children = routes[0].children
+      const children = routes[0].children!
 
       const localeCodes = ['en', 'ja']
       const localizedRoutes = localizeRoutes(routes, {
