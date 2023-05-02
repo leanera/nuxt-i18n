@@ -1,8 +1,8 @@
 import { useLogger } from '@nuxt/kit'
-import type { Consola } from 'consola'
+import type { createConsola } from 'consola'
 import type { Strategies } from './types'
 
-export const logger: Consola = useLogger('@leanera/nuxt-i18n')
+export const logger: ReturnType<typeof createConsola> = useLogger('@leanera/nuxt-i18n')
 
 export function adjustRoutePathForTrailingSlash(
   pagePath: string,
