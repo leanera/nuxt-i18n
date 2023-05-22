@@ -28,6 +28,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     defaultLocale,
     locales,
     messages,
+    ...(!process.dev && { logLevel: 'silent' }),
   })
 
   nuxtApp.vueApp.use(i18n)

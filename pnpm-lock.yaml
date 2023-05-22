@@ -5,8 +5,8 @@ importers:
   .:
     dependencies:
       '@leanera/vue-i18n':
-        specifier: ^0.4.2
-        version: 0.4.2(vue@3.3.4)
+        specifier: ^0.5.0
+        version: 0.5.0(vue@3.3.4)
       '@nuxt/kit':
         specifier: ^3.5.1
         version: 3.5.1(rollup@3.23.0)
@@ -748,10 +748,10 @@ packages:
       type-detect: 4.0.8
     dev: true
 
-  /@leanera/vue-i18n@0.4.2(vue@3.3.4):
-    resolution: {integrity: sha512-6tOtJk3hKS4+pLPpoLAsL4JlG84cH8CuAcpu9BTVdRGmY2qlLRBUw9vGoHy0UihYeyEHgWTy2QlRbptZelKwLw==}
+  /@leanera/vue-i18n@0.5.0(vue@3.3.4):
+    resolution: {integrity: sha512-2Vww6cgibXj0ZKu+Eb7ZGMV/w3j8itkJv+9ai7GkHltUC5X+bQYaBYIJp0dNqHujqLgkZXxWSrDHeGqtt0eWBg==}
     peerDependencies:
-      vue: ^3.0.0
+      vue: ^3
     dependencies:
       klona: 2.0.6
       vue: 3.3.4
