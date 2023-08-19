@@ -16,7 +16,7 @@ function useServerOrClientLocale() {
     long = headers['accept-language']
     short = long?.split(',')?.[0]?.slice(0, 2)
   }
-  else {
+  else if (process.client) {
     long = navigator.language
     short = long.slice(0, 2)
   }
