@@ -1,5 +1,3 @@
-import { isCI } from 'std-env'
-
 export default defineNuxtConfig({
   modules: ['../src/module.ts'],
 
@@ -21,13 +19,11 @@ export default defineNuxtConfig({
     logs: true,
   },
 
+  experimental: {
+    typescriptBundlerResolution: true,
+  },
+
   typescript: {
-    typeCheck: !isCI,
     shim: false,
-    tsConfig: {
-      compilerOptions: {
-        moduleResolution: 'bundler',
-      },
-    },
   },
 })
